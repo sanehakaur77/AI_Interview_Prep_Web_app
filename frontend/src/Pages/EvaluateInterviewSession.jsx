@@ -10,7 +10,7 @@ export default function EvaluateInterviewSession() {
   const { sessionId } = useParams();
   const hasCelebrated = useRef(false);
 
-  const url = `http://localhost:8989/session/result/${sessionId}`;
+  const url = `https://ai-interview-prep-blgp.onrender.com/session/result/${sessionId}`;
 
   useEffect(() => {
     let interval;

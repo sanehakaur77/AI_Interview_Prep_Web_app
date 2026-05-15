@@ -16,7 +16,7 @@ const FeatureItem = ({ icon, text }) => (
     <div className="bg-emerald-100 p-1.5 rounded-lg text-emerald-700">
       {icon}
     </div>
-    <span className="font-semibold text-slate-700 text-xs">{text}</span>
+    <span className="text-xs font-semibold text-slate-700">{text}</span>
   </div>
 );
 
@@ -49,7 +49,7 @@ export default function StartInterviewForm() {
       formData.append("resume", resume);
       const token = localStorage.getItem("token");
       const res = await axios.post(
-        "http://localhost:8989/session/start",
+        "https://ai-interview-prep-blgp.onrender.com/session/start",
         formData,
         {
           headers: {
@@ -89,11 +89,11 @@ export default function StartInterviewForm() {
 
   return (
     <div className="min-h-screen bg-[#f1f5f9] flex items-center justify-center p-4">
-      <div className="flex flex-col md:flex-row w-full max-w-2xl bg-white rounded-2xl overflow-hidden shadow-xl border border-gray-200">
+      <div className="flex flex-col w-full max-w-2xl overflow-hidden bg-white border border-gray-200 shadow-xl md:flex-row rounded-2xl">
         {/* LEFT SIDE */}
-        <div className="md:w-1/2 bg-gradient-to-br from-emerald-400 to-teal-500 p-8 flex flex-col justify-center border-r border-white/10">
-          <div className="space-y-1 mb-6">
-            <h1 className="text-xl font-bold text-white tracking-tight">
+        <div className="flex flex-col justify-center p-8 border-r md:w-1/2 bg-gradient-to-br from-emerald-400 to-teal-500 border-white/10">
+          <div className="mb-6 space-y-1">
+            <h1 className="text-xl font-bold tracking-tight text-white">
               AI Interview
             </h1>
             <p className="text-emerald-50 text-[11px] leading-relaxed opacity-90">
@@ -118,8 +118,8 @@ export default function StartInterviewForm() {
         </div>
 
         {/* RIGHT SIDE */}
-        <div className="md:w-1/2 p-8 bg-white flex flex-col justify-center">
-          <h2 className="text-lg font-bold text-slate-800 mb-5">
+        <div className="flex flex-col justify-center p-8 bg-white md:w-1/2">
+          <h2 className="mb-5 text-lg font-bold text-slate-800">
             Setup Session
           </h2>
 
@@ -132,7 +132,7 @@ export default function StartInterviewForm() {
                 placeholder="Job Role"
                 value={jobRole}
                 onChange={(e) => setJobRole(e.target.value)}
-                className="w-full pl-9 pr-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500"
+                className="w-full py-2 pr-3 text-xs border rounded-lg pl-9 bg-slate-50 border-slate-200 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500"
                 required
               />
             </div>
@@ -145,7 +145,7 @@ export default function StartInterviewForm() {
                 placeholder="Experience"
                 value={experience}
                 onChange={(e) => setExperience(e.target.value)}
-                className="w-full pl-9 pr-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500"
+                className="w-full py-2 pr-3 text-xs border rounded-lg pl-9 bg-slate-50 border-slate-200 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500"
                 required
               />
             </div>
@@ -155,7 +155,7 @@ export default function StartInterviewForm() {
               <select
                 value={interviewType}
                 onChange={(e) => setInterviewType(e.target.value)}
-                className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs appearance-none focus:outline-none focus:border-emerald-500 text-slate-600"
+                className="w-full px-3 py-2 text-xs border rounded-lg appearance-none bg-slate-50 border-slate-200 focus:outline-none focus:border-emerald-500 text-slate-600"
               >
                 <option>Technical</option>
                 <option>Behavioral</option>
@@ -165,9 +165,9 @@ export default function StartInterviewForm() {
             </div>
 
             {/* Resume Upload */}
-            <div className="group border border-dashed border-slate-300 hover:border-emerald-500 hover:bg-emerald-50/50 rounded-lg py-3 flex flex-col items-center justify-center transition-all cursor-pointer">
-              <label className="cursor-pointer flex flex-col items-center">
-                <Upload className="text-emerald-600 w-4 h-4 mb-1" />
+            <div className="flex flex-col items-center justify-center py-3 transition-all border border-dashed rounded-lg cursor-pointer group border-slate-300 hover:border-emerald-500 hover:bg-emerald-50/50">
+              <label className="flex flex-col items-center cursor-pointer">
+                <Upload className="w-4 h-4 mb-1 text-emerald-600" />
                 <p className="text-[10px] font-bold text-slate-500 uppercase">
                   Resume
                 </p>

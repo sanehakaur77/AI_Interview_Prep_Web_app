@@ -13,11 +13,14 @@ const Hero = () => {
       try {
         const token = localStorage.getItem("token");
 
-        const res = await axios.get("http://localhost:8989/api/auth/profile", {
-          headers: {
-            Authorization: `Bearer ${token}`,
+        const res = await axios.get(
+          "https://ai-interview-prep-blgp.onrender.com/api/auth/profile",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
           },
-        });
+        );
         console.log(res);
 
         setUsername(res.data.username);
@@ -33,7 +36,7 @@ const Hero = () => {
     {
       logo: (
         <svg
-          className="h-7 w-auto max-w-xs"
+          className="w-auto max-w-xs h-7"
           width="128"
           height="42"
           viewBox="0 0 128 42"
@@ -54,7 +57,7 @@ const Hero = () => {
     {
       logo: (
         <svg
-          className="h-7 w-auto max-w-xs"
+          className="w-auto max-w-xs h-7"
           width="143"
           height="32"
           viewBox="0 0 143 32"
@@ -75,7 +78,7 @@ const Hero = () => {
     {
       logo: (
         <svg
-          className="h-7 w-auto max-w-xs"
+          className="w-auto max-w-xs h-7"
           width="129"
           height="36"
           viewBox="0 0 129 36"
@@ -92,7 +95,7 @@ const Hero = () => {
     {
       logo: (
         <svg
-          className="h-7 w-auto max-w-xs"
+          className="w-auto max-w-xs h-7"
           width="131"
           height="28"
           viewBox="0 0 131 28"
@@ -113,7 +116,7 @@ const Hero = () => {
     {
       logo: (
         <svg
-          className="h-7 w-auto max-w-xs"
+          className="w-auto max-w-xs h-7"
           width="131"
           height="32"
           viewBox="0 0 131 32"
@@ -137,31 +140,31 @@ const Hero = () => {
     <>
       <div className="min-h-screen pb-20">
         {/* Navbar */}
-        <nav className="z-50 flex items-center justify-between w-full py-4 px-6 md:px-16 lg:px-24 xl:px-40 text-sm bg-white">
+        <nav className="z-50 flex items-center justify-between w-full px-6 py-4 text-sm bg-white md:px-16 lg:px-24 xl:px-40">
           {/* LOGO */}
           <a href="/" className="flex items-center">
             <img
               src="/logo.png" // 👈 make sure this is in public folder
               alt="logo"
-              className="w-46 md:w-32 object-contain transition-transform duration-300 hover:scale-105"
+              className="object-contain transition-transform duration-300 w-46 md:w-32 hover:scale-105"
             />
           </a>
 
           {/* NAV LINKS */}
-          <div className="hidden md:flex items-center gap-8 text-slate-800">
-            <Link to="/" className="hover:text-emerald-600 transition">
+          <div className="items-center hidden gap-8 md:flex text-slate-800">
+            <Link to="/" className="transition hover:text-emerald-600">
               Home
             </Link>
-            <a href="#features" className="hover:text-emerald-600 transition">
+            <a href="#features" className="transition hover:text-emerald-600">
               Features
             </a>
             <a
               href="#testimonials"
-              className="hover:text-emerald-600 transition"
+              className="transition hover:text-emerald-600"
             >
               Testimonials
             </a>
-            <a href="#cta" className="hover:text-emerald-600 transition">
+            <a href="#cta" className="transition hover:text-emerald-600">
               Contact
             </a>
           </div>
@@ -171,7 +174,7 @@ const Hero = () => {
             <div className="flex gap-2">
               <Link
                 to="/app?state=register"
-                className="hidden md:block px-6 py-2 bg-emerald-500 hover:bg-emerald-700 active:scale-95 transition-all rounded-full text-white"
+                className="hidden px-6 py-2 text-white transition-all rounded-full md:block bg-emerald-500 hover:bg-emerald-700 active:scale-95"
               >
                 Get Started
               </Link>
@@ -180,7 +183,7 @@ const Hero = () => {
             <div className="relative">
               {/* PROFILE BUTTON */}
               <button
-                className="w-8 h-8 rounded-full bg-emerald-400 text-white text-sm flex items-center justify-center hover:bg-emerald-300 hover:scale-110 transition"
+                className="flex items-center justify-center w-8 h-8 text-sm text-white transition rounded-full bg-emerald-400 hover:bg-emerald-300 hover:scale-110"
                 onClick={() => setMenuOpen(!menuOpen)}
               >
                 {username?.split(" ")[0]?.charAt(0).toUpperCase()}
@@ -188,8 +191,8 @@ const Hero = () => {
 
               {/* DROPDOWN */}
               {menuOpen && (
-                <div className="absolute right-0 mt-2 w-40 bg-white shadow-lg rounded-lg p-2 z-50">
-                  <p className="px-3 py-2 text-gray-700 font-semibold border-b">
+                <div className="absolute right-0 z-50 w-40 p-2 mt-2 bg-white rounded-lg shadow-lg">
+                  <p className="px-3 py-2 font-semibold text-gray-700 border-b">
                     {username}
                   </p>
 
@@ -198,7 +201,7 @@ const Hero = () => {
                       localStorage.removeItem("token");
                       window.location.reload();
                     }}
-                    className="w-full text-left px-3 py-2 text-red-500 hover:bg-red-100 rounded-md"
+                    className="w-full px-3 py-2 text-left text-red-500 rounded-md hover:bg-red-100"
                   >
                     Logout
                   </button>
@@ -210,7 +213,7 @@ const Hero = () => {
           {/* MOBILE MENU BUTTON */}
           <button
             onClick={() => setMenuOpen(true)}
-            className="md:hidden active:scale-90 transition"
+            className="transition md:hidden active:scale-90"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -244,19 +247,19 @@ const Hero = () => {
 
           <button
             onClick={() => setMenuOpen(false)}
-            className="active:ring-3 active:ring-white aspect-square size-10 p-1 items-center justify-center bg-green-600 hover:bg-green-700 transition text-white rounded-md flex"
+            className="flex items-center justify-center p-1 text-white transition bg-green-600 rounded-md active:ring-3 active:ring-white aspect-square size-10 hover:bg-green-700"
           >
             X
           </button>
         </div>
 
         {/* Hero Section */}
-        <div className="relative flex flex-col items-center justify-center text-sm px-4 md:px-16 lg:px-24 xl:px-40 text-black">
+        <div className="relative flex flex-col items-center justify-center px-4 text-sm text-black md:px-16 lg:px-24 xl:px-40">
           <div className="absolute top-28 xl:top-10 -z-10 left-1/4 size-72 sm:size-96 xl:size-120 2xl:size-132 bg-green-300 blur-[100px] opacity-30"></div>
 
           {/* Avatars + Stars */}
           <div className="flex items-center mt-24">
-            <div className="flex -space-x-3 pr-3">
+            <div className="flex pr-3 -space-x-3">
               <img
                 src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=200"
                 alt="user3"
@@ -300,7 +303,7 @@ const Hero = () => {
                       strokeWidth="2"
                       strokeLinecap="round"
                       strokeLinejoin="round"
-                      className="lucide lucide-star text-transparent fill-green-600"
+                      className="text-transparent lucide lucide-star fill-green-600"
                       aria-hidden="true"
                     >
                       <path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path>
@@ -314,12 +317,12 @@ const Hero = () => {
           {/* Headline + CTA */}
           <h1 className="text-5xl md:text-6xl font-semibold max-w-5xl text-center mt-4 md:leading-[70px]">
             Ace Your Interviews with AI{" "}
-            <span className="bg-gradient-to-r from-green-700 to-green-600 bg-clip-text text-transparent">
+            <span className="text-transparent bg-gradient-to-r from-green-700 to-green-600 bg-clip-text">
               & Practice Smarter
             </span>
           </h1>
 
-          <p className="max-w-md text-center text-base my-7">
+          <p className="max-w-md text-base text-center my-7">
             Get AI-powered questions, instant answers, and real-time feedback to
             prepare like a pro.
           </p>
@@ -328,7 +331,7 @@ const Hero = () => {
           <div className="flex items-center gap-4 ">
             <a
               href="/"
-              className="bg-green-500 hover:bg-green-600 text-white rounded-full px-9 h-12 m-1 ring-offset-2 ring-1 ring-green-400 flex items-center transition-colors"
+              className="flex items-center h-12 m-1 text-white transition-colors bg-green-500 rounded-full hover:bg-green-600 px-9 ring-offset-2 ring-1 ring-green-400"
             >
               Start Preparing
               <svg
@@ -341,14 +344,14 @@ const Hero = () => {
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                className="lucide lucide-arrow-right ml-1 size-4"
+                className="ml-1 lucide lucide-arrow-right size-4"
                 aria-hidden="true"
               >
                 <path d="M5 12h14"></path>
                 <path d="m12 5 7 7-7 7"></path>
               </svg>
             </a>
-            <button className="flex items-center gap-2 border border-slate-400 hover:bg-green-50 transition rounded-full px-7 h-12 text-slate-700">
+            <button className="flex items-center h-12 gap-2 transition border rounded-full border-slate-400 hover:bg-green-50 px-7 text-slate-700">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -376,7 +379,7 @@ const Hero = () => {
           </p>
 
           <div
-            className="flex flex-wrap justify-between max-sm:justify-center gap-6 max-w-3xl w-full mx-auto py-4"
+            className="flex flex-wrap justify-between w-full max-w-3xl gap-6 py-4 mx-auto max-sm:justify-center"
             id="logo-container"
           >
             {companiesLogo.map((company, index) => (
