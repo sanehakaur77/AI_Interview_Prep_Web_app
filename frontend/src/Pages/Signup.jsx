@@ -32,7 +32,7 @@ const Signup = () => {
 
     try {
       const res = await axios.post(
-        "http://localhost:8989/api/auth/signup",
+        "https://ai-interview-prep-web-app.onrender.com/api/auth/signup",
         formData,
       );
       toast.success("Sign Up Sucessful!");

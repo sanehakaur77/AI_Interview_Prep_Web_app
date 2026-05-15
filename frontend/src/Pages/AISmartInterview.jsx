@@ -43,7 +43,7 @@ export default function AISmartInterview() {
     const fetchQuestions = async () => {
       try {
         const res = await fetch(
-          `http://localhost:8989/session/questions/${sessionId}`,
+          `https://ai-interview-prep-web-app.onrender.com/session/questions/${sessionId}`,
         );
         const data = await res.json();
         setQuestions(data.questions || []);
@@ -164,21 +164,24 @@ export default function AISmartInterview() {
     try {
       if (!answer.trim()) return;
 
-      await fetch(`http://localhost:8989/session/answer/${sessionId}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
+      await fetch(
+        `https://ai-interview-prep-web-app.onrender.com/session/answer/${sessionId}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+          body: JSON.stringify({
+            answers: [
+              {
+                questionIndex: currentIndex,
+                answer: answer,
+              },
+            ],
+          }),
         },
-        body: JSON.stringify({
-          answers: [
-            {
-              questionIndex: currentIndex,
-              answer: answer,
-            },
-          ],
-        }),
-      });
+      );
     } catch (err) {
       console.log(err);
     }
@@ -203,7 +206,7 @@ export default function AISmartInterview() {
       try {
         const token = localStorage.getItem("token");
         const res = await axios.get(
-          `http://localhost:8989/session/evaluate/${sessionId}`,
+          `https://ai-interview-prep-web-app.onrender.com/session/evaluate/${sessionId}`,
           {
             headers: {
               "Content-Type": "application/json",

@@ -9,7 +9,7 @@ const Upload = ({ setQuestions, setResumeUrl, navigate }) => {
     formData.append("resume", file);
 
     const res = await axios.post(
-      "http://localhost:8989/api/resume/upload",
+      "https://ai-interview-prep-web-app.onrender.com/api/resume/upload",
       formData,
     );
 
