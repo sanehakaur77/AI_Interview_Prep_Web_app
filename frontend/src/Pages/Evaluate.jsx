@@ -9,7 +9,7 @@ const Evaluate = () => {
     const fetchEvaluation = async () => {
       try {
         const res = await axios.post(
-          "https://ai-interview-prep-blgp.onrender.com/api/resume/evaluate",
+          "http://localhost:8989/api/resume/evaluate",
           {},
           {
             headers: {

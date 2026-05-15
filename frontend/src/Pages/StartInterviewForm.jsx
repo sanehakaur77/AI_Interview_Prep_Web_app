@@ -49,7 +49,7 @@ export default function StartInterviewForm() {
       formData.append("resume", resume);
       const token = localStorage.getItem("token");
       const res = await axios.post(
-        "https://ai-interview-prep-blgp.onrender.com/session/start",
+        "http://localhost:8989/session/start",
         formData,
         {
           headers: {
