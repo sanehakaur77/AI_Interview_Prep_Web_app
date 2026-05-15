@@ -50,7 +50,7 @@ const ResumeInterview = () => {
     try {
       setLoading(true);
       const res = await axios.post(
-        "https://ai-interview-prep-app-cj1v.onrender.com/api/resume/upload",
+        "http://localhost:8989/api/resume/upload",
         formData,
       );
       const qs = res.data.questions?.questions || [];

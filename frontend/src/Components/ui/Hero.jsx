@@ -13,14 +13,11 @@ const Hero = () => {
       try {
         const token = localStorage.getItem("token");
 
-        const res = await axios.get(
-          "https://ai-interview-prep-app-cj1v.onrender.com/api/auth/profile",
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
+        const res = await axios.get("http://localhost:8989/api/auth/profile", {
+          headers: {
+            Authorization: `Bearer ${token}`,
           },
-        );
+        });
         console.log(res);
 
         setUsername(res.data.username);
