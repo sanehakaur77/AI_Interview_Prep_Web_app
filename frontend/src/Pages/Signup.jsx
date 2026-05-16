@@ -105,7 +105,7 @@ const Signup = () => {
 
           <button
             type="submit"
-            className="flex items-center justify-center w-full gap-2 py-2 text-xs font-medium text-white transition rounded-md bg-slate-900 hover:bg-slate-800"
+            className="flex items-center justify-center w-full gap-2 py-2 text-xs font-medium text-white transition rounded-md bg-emerald-500 hover:bg-slate-800"
           >
             Get Started <ArrowRight size={14} />
           </button>
@@ -119,7 +119,7 @@ const Signup = () => {
         </div>
 
         <div className="grid grid-cols-2 gap-2">
-          <button className="flex items-center justify-center gap-1 border border-slate-200 rounded-md py-1.5 text-xs hover:bg-slate-100 transition">
+          <button className="flex items-center justify-center gap-1 border border-slate-200 rounded-md py-1.5 text-xs hover:bg-emerald-400 transition">
             <FontAwesomeIcon icon={faGoogle} className="text-sm text-red-500" />
             Google
           </button>

@@ -98,7 +98,7 @@ const Login = () => {
 
             <button
               type="submit"
-              className="flex items-center justify-center w-full gap-2 py-2 text-xs font-medium text-white transition rounded-md bg-slate-900 hover:bg-slate-800"
+              className="flex items-center justify-center w-full gap-2 py-2 text-xs font-medium text-white transition rounded-md bg-emerald-500 hover:bg-emerald-400"
             >
               Login <ArrowRight size={14} />
             </button>

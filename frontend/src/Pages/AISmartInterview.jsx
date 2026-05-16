@@ -224,12 +224,12 @@ export default function AISmartInterview() {
   const progress = (timeLeft / 90) * 100;
 
   return (
-    <div className="min-h-screen bg-[#eef4f1] flex items-center justify-center p-3 font-sans">
-      <div className="bg-white w-full max-w-5xl h-[540px] rounded-[28px] overflow-hidden shadow-2xl flex">
+    <div className="min-h-screen bg-[#eef4f1] flex items-center justify-center p-3 sm:p-4 md:p-6 font-sans">
+      <div className="bg-white w-full max-w-5xl h-auto md:min-h-[540px] rounded-[20px] sm:rounded-[28px] overflow-hidden shadow-2xl flex flex-col md:flex-row">
         {/* LEFT PANEL */}
-        <div className="w-[30%] bg-[#f8fafb] p-4">
-          {/* VIDEO */}
-          <div className="h-[170px] overflow-hidden rounded-2xl shadow-sm">
+        <div className="w-full md:w-[32%] lg:w-[28%] bg-[#f8fafb] p-3 sm:p-4 flex flex-row md:flex-col gap-3 sm:gap-4 border-b md:border-b-0 md:border-r border-slate-100 items-center justify-between md:justify-start md:items-stretch">
+          {/* VIDEO CONTAINER */}
+          <div className="w-20 h-20 xs:w-24 xs:h-24 sm:w-28 sm:h-28 md:w-full md:h-[160px] overflow-hidden rounded-xl sm:rounded-2xl shadow-sm flex-shrink-0">
             <video
               ref={videoRef}
               className="object-cover w-full h-full"
@@ -241,109 +241,123 @@ export default function AISmartInterview() {
             />
           </div>
 
-          {/* STATUS */}
-          <div className="p-4 mt-4 bg-white shadow-sm rounded-2xl">
-            <h2 className="text-sm font-semibold text-slate-700">
+          {/* STATUS INFO */}
+          <div className="flex flex-row items-center justify-end flex-1 w-auto gap-3 bg-transparent md:justify-start md:w-full sm:gap-4 md:bg-white md:shadow-sm md:flex-col md:p-3 rounded-2xl">
+            <h2 className="hidden text-xs font-semibold text-center md:block sm:text-sm text-slate-700">
               Interview Progress
             </h2>
 
             {/* TIMER */}
-            <div className="flex justify-center mt-5">
-              <div className="relative">
-                <svg width="82" height="82" className="-rotate-90">
+            <div className="flex justify-center flex-shrink-0">
+              <div className="relative scale-75 xs:scale-85 sm:scale-90 md:scale-100">
+                <svg
+                  width="76"
+                  height="76"
+                  className="-rotate-90 sm:w-[82px] sm:h-[82px]"
+                >
                   <circle
-                    cx="41"
-                    cy="41"
-                    r="31"
+                    cx="38"
+                    cy="38"
+                    r="30"
                     stroke="#e5e7eb"
-                    strokeWidth="6"
+                    strokeWidth="5"
                     fill="transparent"
                   />
                   <circle
-                    cx="41"
-                    cy="41"
-                    r="31"
+                    cx="38"
+                    cy="38"
+                    r="30"
                     stroke="#10b981"
-                    strokeWidth="6"
+                    strokeWidth="5"
                     fill="transparent"
-                    strokeDasharray="194"
-                    strokeDashoffset={194 - (194 * progress) / 100}
+                    strokeDasharray="188.4"
+                    strokeDashoffset={188.4 - (188.4 * progress) / 100}
                     strokeLinecap="round"
                   />
                 </svg>
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <span className="text-lg font-bold text-slate-700">
-                    {timeLeft}
+                  <span className="text-sm font-bold sm:text-base text-slate-700">
+                    {timeLeft}s
                   </span>
                 </div>
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-3 mt-6">
-              <div className="py-3 text-center bg-emerald-50 rounded-xl">
-                <h1 className="text-2xl font-bold text-emerald-600">
+            {/* PROGRESS COUNTER */}
+            <div className="flex md:grid flex-row md:grid-cols-2 gap-1.5 sm:gap-2 min-w-[110px] xs:min-w-[130px] md:w-full md:mt-2">
+              <div className="flex-1 py-1 text-center rounded-lg sm:py-2 bg-emerald-50 sm:rounded-xl">
+                <h1 className="text-sm font-bold xs:text-base md:text-xl text-emerald-600">
                   {currentIndex + 1}
                 </h1>
-                <p className="text-[10px] text-slate-500">CURRENT</p>
+                <p className="text-[8px] sm:text-[9px] font-medium text-slate-500 tracking-wider hidden xs:block">
+                  CURRENT
+                </p>
               </div>
-              <div className="py-3 text-center bg-emerald-50 rounded-xl">
-                <h1 className="text-2xl font-bold text-emerald-600">
+              <div className="flex-1 py-1 text-center rounded-lg sm:py-2 bg-emerald-50 sm:rounded-xl">
+                <h1 className="text-sm font-bold xs:text-base md:text-xl text-emerald-600">
                   {questions.length}
                 </h1>
-                <p className="text-[10px] text-slate-500">TOTAL</p>
+                <p className="text-[8px] sm:text-[9px] font-medium text-slate-500 tracking-wider hidden xs:block">
+                  TOTAL
+                </p>
               </div>
             </div>
           </div>
         </div>
 
         {/* RIGHT PANEL */}
-        <div className="flex flex-col flex-1 p-6">
-          <div className="flex items-center justify-between">
-            <h1 className="text-2xl font-bold text-emerald-700">
-              AI Smart Interview
-            </h1>
-            <div className="px-4 py-2 rounded-full bg-emerald-50">
-              <p className="text-xs font-semibold text-emerald-600">
-                {currentIndex + 1} / {questions.length}
+        <div className="flex flex-col justify-between flex-1 gap-4 p-4 sm:p-5 md:p-6">
+          <div className="flex flex-col gap-3">
+            {/* HEADER */}
+            <div className="flex items-center justify-between gap-2">
+              <h1 className="text-base font-bold truncate xs:text-lg sm:text-2xl text-emerald-600">
+                AI Smart Interview
+              </h1>
+              <div className="flex-shrink-0 px-2.5 py-0.5 sm:py-1 rounded-full bg-emerald-50">
+                <p className="text-[10px] sm:text-xs font-semibold text-emerald-600">
+                  {currentIndex + 1} / {questions.length}
+                </p>
+              </div>
+            </div>
+
+            {/* QUESTION BOX */}
+            <div className="p-3.5 sm:p-5 bg-[#f8fafb] rounded-xl sm:rounded-2xl border border-slate-100">
+              <p className="text-[8px] sm:text-[9px] uppercase font-bold tracking-[2px] text-emerald-600">
+                Question
               </p>
+              <h2 className="mt-1 text-xs sm:text-sm md:text-[16px] leading-5 sm:leading-6 font-semibold text-slate-700">
+                {questions[currentIndex]?.question || "Loading..."}
+              </h2>
             </div>
           </div>
 
-          {/* QUESTION */}
-          <div className="mt-4 p-5 bg-[#f8fafb] rounded-2xl">
-            <p className="text-[10px] uppercase font-bold tracking-[3px] text-emerald-600">
-              Question
-            </p>
-            <h2 className="mt-2 text-[17px] leading-7 font-semibold text-slate-700">
-              {questions[currentIndex]?.question || "Loading..."}
-            </h2>
-          </div>
-
-          {/* ANSWER */}
+          {/* ANSWER INPUT */}
           <textarea
             value={answer}
             onChange={(e) => setAnswer(e.target.value)}
             placeholder="Speak or type your answer..."
-            className="w-full flex-1 mt-4 bg-[#f8fafb] rounded-2xl p-5 outline-none focus:ring-0 border-none resize-none text-sm text-slate-600"
+            className="w-full min-h-[140px] md:flex-1 bg-[#f8fafb] rounded-xl sm:rounded-2xl p-3.5 sm:p-5 outline-none focus:ring-2 focus:ring-emerald-500/20 border border-transparent focus:border-emerald-500/30 resize-none text-xs sm:text-sm text-slate-600 transition-all duration-200 shadow-inner"
           />
 
-          {/* BUTTONS */}
-          <div className="flex gap-3 mt-5">
+          {/* ACTION BUTTONS */}
+          <div className="flex gap-2.5 sm:gap-3">
             <button
               onClick={toggleListening}
-              className={`w-12 h-12 rounded-full flex items-center justify-center transition shadow-md ${
-                isListening ? "bg-red-500" : "bg-slate-900"
+              className={`w-11 h-11 sm:w-12 sm:h-12 rounded-full flex items-center justify-center flex-shrink-0 transition-all duration-200 active:scale-95 shadow-md ${
+                isListening
+                  ? "bg-red-500 hover:bg-red-600 ring-4 ring-red-100"
+                  : "bg-slate-900 hover:bg-slate-800"
               }`}
             >
-              <Mic size={18} className="text-white" />
+              <Mic size={16} className="text-white sm:w-[18px] sm:h-[18px]" />
             </button>
 
             <button
               onClick={handleNext}
-              className="flex items-center justify-center flex-1 h-12 gap-2 font-semibold text-white transition rounded-full shadow-md bg-emerald-600 hover:bg-emerald-700"
+              className="flex items-center justify-center flex-1 h-11 sm:h-12 gap-1.5 sm:gap-2 text-sm sm:text-base font-semibold text-white transition-all duration-200 rounded-full shadow-md bg-emerald-500 hover:bg-emerald-700 active:scale-[0.99]"
             >
-              Submit
-              <Send size={16} />
+              Submit Answer
+              <Send size={14} className="sm:w-[16px] sm:h-[16px]" />
             </button>
           </div>
         </div>

@@ -152,45 +152,46 @@ const evaluateInterviewController = async (req, res) => {
 
     const result = await evaluateInterview(doc.questions);
 
-    // update questions
-    doc.questions = doc.questions.map((q, i) => ({
-      ...q.toObject(),
-      feedback: result.feedback[i]?.feedback || "",
-      score: result.feedback[i]?.score || 0,
-    }));
+    // ✅ FIXED SAFE MAPPING (NO 0/10 BUG NOW)
+    doc.questions = doc.questions.map((q, i) => {
+      const match = result.results?.find((r) => r.id === i);
 
-    // calculate overall manually
+      return {
+        ...q.toObject(),
+        score: match?.score ?? 0,
+        feedback: match?.feedback ?? "No feedback generated",
+      };
+    });
+
     const totalScore = doc.questions.reduce(
       (sum, q) => sum + Number(q.score || 0),
       0,
     );
 
-    const maxScore = doc.questions.length * 10;
-
-    const overallScore = Math.round((totalScore / maxScore) * 100);
+    const overallScore = Math.round(
+      (totalScore / (doc.questions.length * 10)) * 100,
+    );
 
     doc.overallScore = overallScore;
-
     doc.summary = result.summary || "";
 
     await doc.save();
 
     const savedResult = await Result.create({
       sessionId: doc.sessionId,
-      overallScore: doc.overallScore,
+      overallScore,
       summary: doc.summary,
       questions: doc.questions,
     });
 
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
-      message: "Interview evaluated and saved successfully",
       data: savedResult,
     });
   } catch (err) {
     console.log(err);
 
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       message: err.message,
     });

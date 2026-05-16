@@ -69,43 +69,70 @@ const evaluateInterview = async (questions) => {
 
   const formattedQA = questions
     .map(
-      (q, i) => `Q${i + 1}: ${q.question}\nAnswer: ${q.answer || "No answer"}`,
+      (q, i) =>
+        `ID:${i}
+Question: ${q.question}
+Answer: ${q.answer || "No answer"}`,
     )
     .join("\n\n");
-  const prompt = `
-You are an expert interviewer.
 
-Strictly return ONLY valid JSON. No markdown.
-and score should be between 0 and 10 for each question
-Format:
+  const prompt = `
+You are an expert technical interviewer.
+
+Return ONLY valid JSON.
+
+STRICT FORMAT:
 {
-  "score": number,
-  "feedback": [
-    { "feedback": "...", "score": number }
+  "results": [
+    {
+      "id": 0,
+      "score": 0,
+      "feedback": "string feedback"
+    }
   ],
-  "summary": "..."
+  "summary": "overall summary"
 }
+
+RULES:
+- score must be 0-10
+- feedback must be 1-2 lines only
+- MUST return same number of results as input
+- NO markdown, NO extra text
 
 Interview:
 ${formattedQA}
 `;
+
   const result = await model.generateContent(prompt);
-  const text = result.response
-    .text()
-    .replace(/```json|```/g, "")
-    .trim();
+
+  const text = result.response.text().trim();
+
+  const start = text.indexOf("{");
+  const end = text.lastIndexOf("}");
+
+  if (start === -1 || end === -1) {
+    return fallback(questions);
+  }
+
+  const clean = text.slice(start, end + 1);
 
   try {
-    return JSON.parse(text);
-  } catch {
-    return {
-      score: 5,
-      feedback: questions.map(() => ({
-        feedback: "Evaluation failed",
-        score: 5,
-      })),
-      summary: "Could not evaluate properly",
-    };
+    return JSON.parse(clean);
+  } catch (err) {
+    console.log("RAW GEMINI OUTPUT:", text);
+    return fallback(questions);
   }
 };
+
+const fallback = (questions) => {
+  return {
+    results: questions.map((_, i) => ({
+      id: i,
+      score: 5,
+      feedback: "Evaluation failed, fallback used",
+    })),
+    summary: "Fallback evaluation applied",
+  };
+};
+
 module.exports = { generateQuestions, evaluateInterview };
