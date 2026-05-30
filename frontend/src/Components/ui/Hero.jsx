@@ -21,6 +21,7 @@ const [profileOpen, setProfileOpen] = useState(false); // Profile Dropdown
             Authorization: `Bearer ${token}`,
           },
         });
+        console.log(res);
 
         setUsername(res.data.username);
       } catch (error) {
