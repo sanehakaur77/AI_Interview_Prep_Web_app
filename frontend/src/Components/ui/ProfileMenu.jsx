@@ -28,7 +28,7 @@ const ProfileMenu = ({ username }) => {
       {/* Profile Button */}
       <button
         onClick={() => setMenuOpen((prev) => !prev)}
-        className="w-10 h-10 rounded-full bg-gradient-to-r from-emerald-400 to-emerald-600 text-white font-semibold flex items-center justify-center shadow-md hover:scale-105 transition"
+        className="flex items-center justify-center w-10 h-10 font-semibold text-white transition rounded-full shadow-md bg-gradient-to-r from-emerald-400 to-emerald-600 hover:scale-105"
       >
         {initial}
       </button>
@@ -42,31 +42,31 @@ const ProfileMenu = ({ username }) => {
         }`}
       >
         {/* Header */}
-        <div className="px-4 py-3 bg-gray-50 border-b">
+        <div className="px-4 py-3 border-b bg-gray-50">
           <p className="text-xs text-gray-500">Signed in as</p>
           <p className="font-semibold text-gray-800 truncate">{username}</p>
         </div>
 
         {/* Menu Items */}
         <div className="p-2 space-y-1">
-          <button className="flex items-center gap-3 w-full px-3 py-2 rounded-lg hover:bg-gray-100 text-gray-700 transition">
+          <button className="flex items-center w-full gap-3 px-3 py-2 text-gray-700 transition rounded-lg hover:bg-gray-100">
             <FontAwesomeIcon icon={faUser} />
             Profile
           </button>
 
-          <button className="flex items-center gap-3 w-full px-3 py-2 rounded-lg hover:bg-gray-100 text-gray-700 transition">
+          <button className="flex items-center w-full gap-3 px-3 py-2 text-gray-700 transition rounded-lg hover:bg-gray-100">
             <FontAwesomeIcon icon={faGear} />
             Settings
           </button>
 
-          <div className="border-t my-2"></div>
+          <div className="my-2 border-t"></div>
 
           <button
             onClick={() => {
               localStorage.removeItem("token");
               window.location.reload();
             }}
-            className="flex items-center gap-3 w-full px-3 py-2 rounded-lg hover:bg-red-100 text-red-500 transition"
+            className="flex items-center w-full gap-3 px-3 py-2 text-red-500 transition rounded-lg hover:bg-red-100"
           >
             <FontAwesomeIcon icon={faRightFromBracket} />
             Logout

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState ,useRef} from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { LogOut } from "lucide-react";
@@ -6,6 +6,9 @@ import ProfileMenu from "./ProfileMenu";
 const Hero = () => {
   const [menuOpen, setMenuOpen] = React.useState(false);
   const [username, setUsername] = useState("");
+const profileRef = useRef(null);
+ 
+const [profileOpen, setProfileOpen] = useState(false); // Profile Dropdown
 
   const token = Boolean(localStorage.getItem("token"));
   useEffect(() => {
@@ -13,15 +16,11 @@ const Hero = () => {
       try {
         const token = localStorage.getItem("token");
 
-        const res = await axios.get(
-          "https://ai-interview-prep-web-app.onrender.com/api/auth/profile",
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
+        const res = await axios.get("http://localhost:8989/api/auth/profile", {
+          headers: {
+            Authorization: `Bearer ${token}`,
           },
-        );
-        console.log(res);
+        });
 
         setUsername(res.data.username);
       } catch (error) {
@@ -31,6 +30,22 @@ const Hero = () => {
     console.log(username);
     fetchProfile();
   }, []);
+  useEffect(() => {
+  const handleClickOutside = (event) => {
+    if (
+      profileRef.current &&
+      !profileRef.current.contains(event.target)
+    ) {
+      setProfileOpen(false);
+    }
+  };
+
+  document.addEventListener("mousedown", handleClickOutside);
+
+  return () => {
+    document.removeEventListener("mousedown", handleClickOutside);
+  };
+}, []);
 
   const companiesLogo = [
     {
@@ -182,31 +197,33 @@ const Hero = () => {
           ) : (
             <div className="relative">
               {/* PROFILE BUTTON */}
-              <button
-                className="flex items-center justify-center w-8 h-8 text-sm text-white transition rounded-full bg-emerald-400 hover:bg-emerald-300 hover:scale-110"
-                onClick={() => setMenuOpen(!menuOpen)}
-              >
-                {username?.split(" ")[0]?.charAt(0).toUpperCase()}
-              </button>
+<button
+  onClick={() => setProfileOpen(!profileOpen)}
+  className="w-8 h-8 text-white rounded-full bg-emerald-400"
+>
+  {username?.split(" ")[0]?.charAt(0).toUpperCase()}
+</button>
 
               {/* DROPDOWN */}
-              {menuOpen && (
-                <div className="absolute right-0 z-50 w-40 p-2 mt-2 bg-white rounded-lg shadow-lg">
-                  <p className="px-3 py-2 font-semibold text-gray-700 border-b">
-                    {username}
-                  </p>
+              {profileOpen && (
+              <div className="relative" ref={profileRef}>
+  <div className="absolute right-0 z-50 w-40 p-2 mt-2 bg-white rounded-lg shadow-lg">
+    <p className="px-3 py-2 font-semibold text-gray-700 border-b">
+      {username}
+    </p>
 
-                  <button
-                    onClick={() => {
-                      localStorage.removeItem("token");
-                      window.location.reload();
-                    }}
-                    className="w-full px-3 py-2 text-left text-red-500 rounded-md hover:bg-red-100"
-                  >
-                    Logout
-                  </button>
-                </div>
-              )}
+    <button
+      onClick={() => {
+        localStorage.removeItem("token");
+        window.location.reload();
+      }}
+      className="w-full px-3 py-2 text-left text-red-500 rounded-md hover:bg-red-100"
+    >
+      Logout
+    </button>
+  </div>
+  </div>
+)}
             </div>
           )}
 
