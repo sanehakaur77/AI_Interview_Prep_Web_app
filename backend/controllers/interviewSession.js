@@ -17,13 +17,32 @@ const uploadToCloudinary = (fileBuffer) => {
       (error, result) => {
         if (error) return reject(error);
         resolve(result);
-      },
+      }
     );
 
     streamifier.createReadStream(fileBuffer).pipe(stream);
   });
 };
 
+// ===============================
+// NORMALIZE (USER INPUT → INTERNAL)
+// ===============================
+const normalizeInterviewType = (type) => {
+  if (!type) return "Behavioral";
+
+  const map = {
+    "HR Screening": "HR Screening", // 🔥 IMPORTANT (KEEP SAME FOR SCHEMA)
+    HR: "HR Screening",
+    Technical: "Technical",
+    Behavioral: "Behavioral",
+  };
+
+  return map[type] || "Behavioral";
+};
+
+// ===============================
+// START INTERVIEW
+// ===============================
 const startInterview = async (req, res) => {
   try {
     const { jobRole, experience, interviewType } = req.body;
@@ -35,32 +54,58 @@ const startInterview = async (req, res) => {
       });
     }
 
+    if (!req.user?._id) {
+      return res.status(401).json({
+        success: false,
+        message: "User not authenticated",
+      });
+    }
+
+    const cleanInterviewType = normalizeInterviewType(interviewType);
+
     let resumeText = "";
     let resumeUrl = "";
 
-    // 📄 Upload + Parse Resume
+    // ===============================
+    // RESUME UPLOAD + PDF PARSE (SAFE)
+    // ===============================
     if (req.file) {
-      const result = await uploadToCloudinary(req.file.buffer);
-      resumeUrl = result.secure_url;
+      try {
+        const result = await uploadToCloudinary(req.file.buffer);
+        resumeUrl = result.secure_url;
 
-      const data = await pdfParse(req.file.buffer);
-      resumeText = data.text;
+        try {
+          const data = await pdfParse(req.file.buffer);
+          resumeText = data.text || "";
+        } catch (pdfErr) {
+          console.log("PDF ERROR:", pdfErr.message);
+          resumeText = "";
+        }
+      } catch (uploadErr) {
+        console.log("UPLOAD ERROR:", uploadErr.message);
+      }
     }
 
-    // 🤖 Generate Questions
+    const safeResumeText = resumeText.slice(0, 3000);
+
+    // ===============================
+    // GENERATE QUESTIONS
+    // ===============================
     const questions = await generateQuestions({
       jobRole,
       experience,
-      interviewType,
-      resumeText,
+      interviewType: cleanInterviewType,
+      resumeText: safeResumeText,
     });
 
-    // 💾 Save Session (✅ FIX HERE)
+    // ===============================
+    // SAVE SESSION (🔥 FIX HERE)
+    // ===============================
     const session = await Session.create({
-      userId: req.user._id, // 👈 ADD THIS
+      userId: req.user._id,
       jobRole,
       experience,
-      interviewType,
+      interviewType: cleanInterviewType, // ✅ NOW MATCHES SCHEMA
       resumeUrl,
       status: "started",
     });
@@ -68,7 +113,6 @@ const startInterview = async (req, res) => {
     const formattedQuestions = questions.map((q) => ({
       question: q.question,
       answer: "",
-      status: "unanswered",
     }));
 
     await InterviewQuestion.create({
@@ -76,19 +120,18 @@ const startInterview = async (req, res) => {
       questions: formattedQuestions,
     });
 
-    res.status(201).json({
+    return res.status(201).json({
       success: true,
-      message: "Interview started successfully",
       sessionId: session._id,
       resumeUrl,
       questions: formattedQuestions,
     });
   } catch (err) {
-    console.error("ERROR:", err);
+    console.error("START INTERVIEW ERROR:", err);
 
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
-      message: err.message || "Interview start failed",
+      message: err.message,
     });
   }
 };
@@ -137,9 +180,98 @@ const submitAnswer = async (req, res) => {
     });
   }
 };
+
+
+// const evaluateInterviewController = async (req, res) => {
+//   try {
+//     const { sessionId } = req.params;
+
+//     const doc = await InterviewQuestion.findOne({ sessionId });
+
+//     if (!doc) {
+//       return res.status(404).json({
+//         success: false,
+//         message: "Interview not found",
+//       });
+//     }
+
+    
+//     // ===============================
+//     const result = await evaluateInterview(doc.questions);
+
+//     if (!result || !result.feedback) {
+//       return res.status(500).json({
+//         success: false,
+//         message: "AI evaluation failed",
+//       });
+//     }
+
+//     // ===============================
+//     // 3️⃣ SAFE QUESTION UPDATE
+//     // ===============================
+//     const updatedQuestions = doc.questions.map((q, i) => ({
+//       question: q.question,
+//       answer: q.answer,
+//       status: q.status,
+//       feedback: result.feedback?.[i]?.feedback || "No feedback",
+//       score: result.feedback?.[i]?.score || 0,
+//     }));
+
+//     // ===============================
+//     // 4️⃣ FIXED OVERALL SCORE (IMPORTANT)
+//     // ===============================
+//     const totalScore = result.feedback.reduce((acc, item) => {
+//       return acc + (item.score || 0);
+//     }, 0);
+
+//     const overallScore =
+//       result.feedback.length > 0
+//         ? Math.round(totalScore / result.feedback.length)
+//         : 0;
+
+//     // ===============================
+//     // 5️⃣ UPDATE DOC
+//     // ===============================
+//     doc.questions = updatedQuestions;
+//     doc.overallScore = overallScore;
+//     doc.summary = result.summary || "No summary available";
+
+//     await doc.save();
+
+//     // ===============================
+//     // 6️⃣ SAVE RESULT MODEL
+//     // ===============================
+//     const savedResult = await Result.create({
+//       sessionId: doc.sessionId,
+//       overallScore: doc.overallScore,
+//       summary: doc.summary,
+//       questions: updatedQuestions,
+//     });
+
+//     // ===============================
+//     // 7️⃣ RESPONSE
+//     // ===============================
+//     return res.status(200).json({
+//       success: true,
+//       message: "Interview evaluated successfully",
+//       data: savedResult,
+//     });
+//   } catch (err) {
+//     console.error("EVALUATION ERROR:", err);
+
+//     return res.status(500).json({
+//       success: false,
+//       message: err.message,
+//     });
+//   }
+// };
+
 const evaluateInterviewController = async (req, res) => {
   try {
-    const { sessionId } = req.params;
+    const { sessionId, userId } = req.params;
+
+    console.log("sessionId:", sessionId);
+    console.log("userId:", userId);
 
     const doc = await InterviewQuestion.findOne({ sessionId });
 
@@ -152,45 +284,36 @@ const evaluateInterviewController = async (req, res) => {
 
     const result = await evaluateInterview(doc.questions);
 
-    // ✅ FIXED SAFE MAPPING (NO 0/10 BUG NOW)
-    doc.questions = doc.questions.map((q, i) => {
-      const match = result.results?.find((r) => r.id === i);
+    const updatedQuestions = doc.questions.map((q, i) => ({
+      question: q.question,
+      answer: q.answer,
+      status: q.status,
+      feedback: result.feedback?.[i]?.feedback || "No feedback",
+      score: result.feedback?.[i]?.score || 0,
+    }));
 
-      return {
-        ...q.toObject(),
-        score: match?.score ?? 0,
-        feedback: match?.feedback ?? "No feedback generated",
-      };
-    });
-
-    const totalScore = doc.questions.reduce(
-      (sum, q) => sum + Number(q.score || 0),
-      0,
+    const totalScore = result.feedback.reduce(
+      (acc, item) => acc + (item.score || 0),
+      0
     );
 
-    const overallScore = Math.round(
-      (totalScore / (doc.questions.length * 10)) * 100,
-    );
+    const overallScore =
+      result.feedback.length > 0
+        ? Math.round(totalScore / result.feedback.length)
+        : 0;
 
-    doc.overallScore = overallScore;
-    doc.summary = result.summary || "";
-
-    await doc.save();
-
-    const savedResult = await Result.create({
-      sessionId: doc.sessionId,
-      overallScore,
-      summary: doc.summary,
-      questions: doc.questions,
-    });
-
+   const savedResult = await Result.create({
+  sessionId: doc.sessionId,
+  userId: userId,
+  overallScore,
+  summary: result.summary,
+  questions: updatedQuestions,
+});
     return res.status(200).json({
       success: true,
       data: savedResult,
     });
   } catch (err) {
-    console.log(err);
-
     return res.status(500).json({
       success: false,
       message: err.message,

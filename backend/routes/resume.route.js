@@ -11,43 +11,46 @@ const { authMiddleware } = require("../middlewares/auth.middleware");
 
 router.post("/upload", upload.single("resume"), async (req, res) => {
   try {
-    console.log("1. File received:", req.file);
-
     if (!req.file) {
-      return res.status(400).json({ error: "No file uploaded" });
+      return res.status(400).json({
+        error: "No file uploaded",
+      });
     }
+
+    const interviewType = req.body.interviewType;
 
     const result = await cloudinary.uploader.upload(req.file.path, {
       resource_type: "raw",
       type: "upload",
     });
 
-    console.log("2. Uploaded to Cloudinary:", result.secure_url);
-
     const text = await extractTextFromPDF(req.file.path);
-    console.log("3. Extracted text length:", text.length);
 
-    const data = await generateQuestions(text);
-    console.log("4. Gemini response received");
+    const questions = await generateQuestions({
+      resumeText: text,
+      interviewType,
+    });
 
     fs.unlinkSync(req.file.path);
 
     res.json({
-      message: "PDF uploaded & processed successfully",
+      success: true,
       url: result.secure_url,
-      questions: data,
+      interviewType,
+      questions,
     });
   } catch (err) {
-    console.log("ERROR:", err);
+    console.log(err);
 
-    // cleanup if error
     if (req.file) {
       try {
         fs.unlinkSync(req.file.path);
       } catch {}
     }
 
-    res.status(500).json({ error: err.message });
+    res.status(500).json({
+      error: err.message,
+    });
   }
 });
 router.post("/save-response", authMiddleware, async (req, res) => {

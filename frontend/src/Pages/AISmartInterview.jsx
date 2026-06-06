@@ -200,13 +200,13 @@ export default function AISmartInterview() {
       setTimeLeft(90);
     } else {
       alert("Interview Completed 🎉");
+      const userId=localStorage.getItem("userId");
       navigate(`/evaluate-interview/${sessionId}`);
       window.speechSynthesis.cancel();
-
       try {
         const token = localStorage.getItem("token");
         const res = await axios.get(
-          `https://ai-interview-prep-web-app.onrender.com/session/evaluate/${sessionId}`,
+          `http://localhost:8989/session/evaluate/${sessionId}/${userId}`,
           {
             headers: {
               "Content-Type": "application/json",

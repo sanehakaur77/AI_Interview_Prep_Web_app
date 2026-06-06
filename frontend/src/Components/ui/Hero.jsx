@@ -1,14 +1,13 @@
-import React, { useEffect, useState ,useRef} from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link,useNavigate } from "react-router-dom";
 import axios from "axios";
-import { LogOut } from "lucide-react";
+import { LogOut ,User,LayoutDashboard} from "lucide-react";
 import ProfileMenu from "./ProfileMenu";
 const Hero = () => {
   const [menuOpen, setMenuOpen] = React.useState(false);
   const [username, setUsername] = useState("");
-const profileRef = useRef(null);
- 
-const [profileOpen, setProfileOpen] = useState(false); // Profile Dropdown
+  const navigate=useNavigate();
+  const userId=localStorage.getItem("userId");
 
   const token = Boolean(localStorage.getItem("token"));
   useEffect(() => {
@@ -21,7 +20,7 @@ const [profileOpen, setProfileOpen] = useState(false); // Profile Dropdown
             Authorization: `Bearer ${token}`,
           },
         });
-        console.log(res);
+        localStorage.setItem("userId",res.data.userId);
 
         setUsername(res.data.username);
       } catch (error) {
@@ -31,22 +30,6 @@ const [profileOpen, setProfileOpen] = useState(false); // Profile Dropdown
     console.log(username);
     fetchProfile();
   }, []);
-  useEffect(() => {
-  const handleClickOutside = (event) => {
-    if (
-      profileRef.current &&
-      !profileRef.current.contains(event.target)
-    ) {
-      setProfileOpen(false);
-    }
-  };
-
-  document.addEventListener("mousedown", handleClickOutside);
-
-  return () => {
-    document.removeEventListener("mousedown", handleClickOutside);
-  };
-}, []);
 
   const companiesLogo = [
     {
@@ -198,21 +181,48 @@ const [profileOpen, setProfileOpen] = useState(false); // Profile Dropdown
           ) : (
             <div className="relative">
               {/* PROFILE BUTTON */}
-<button
-  onClick={() => setProfileOpen(!profileOpen)}
-  className="w-8 h-8 text-white rounded-full bg-emerald-400"
->
-  {username?.split(" ")[0]?.charAt(0).toUpperCase()}
-</button>
+              <button
+                className="flex items-center justify-center w-8 h-8 text-sm text-white transition rounded-full bg-emerald-400 hover:bg-emerald-300 hover:scale-110"
+                onClick={() => setMenuOpen(!menuOpen)}
+              >
+                {username?.split(" ")[0]?.charAt(0).toUpperCase()}
+              </button>
 
               {/* DROPDOWN */}
-              {profileOpen && (
-              <div className="relative" ref={profileRef}>
+                {menuOpen && (
   <div className="absolute right-0 z-50 w-40 p-2 mt-2 bg-white rounded-lg shadow-lg">
-    <p className="px-3 py-2 font-semibold text-gray-700 border-b">
-      {username}
-    </p>
 
+    {/* HEADER */}
+    <div className="flex items-center justify-between px-2 border-b">
+
+      <p className="font-semibold text-gray-700">
+        {username}
+      </p>
+
+      {/* CLOSE BUTTON */}
+      <button
+        onClick={() => setMenuOpen(false)}
+        className="text-lg font-bold text-gray-500 hover:text-red-500"
+      >
+        ✕
+      </button>
+
+    </div>
+
+    {/* PROFILE BUTTON */}
+   
+    <button className="flex items-center w-full gap-2 px-3 py-2 text-gray-700 hover:bg-gray-100"
+    onClick={()=>{navigate(`/profile/${userId}`)}}>
+      <User size={20} />
+      <span>Profile</span>
+    </button>
+     <button className="flex items-center w-full gap-2 px-3 py-2 text-gray-700 hover:bg-gray-100"
+    onClick={()=>{navigate(`/dashboard/${userId}`)}}>
+      <LayoutDashboard size={20} />
+      <span>Dashboard</span>
+    </button>
+
+    {/* LOGOUT */}
     <button
       onClick={() => {
         localStorage.removeItem("token");
@@ -222,7 +232,7 @@ const [profileOpen, setProfileOpen] = useState(false); // Profile Dropdown
     >
       Logout
     </button>
-  </div>
+
   </div>
 )}
             </div>
@@ -347,11 +357,12 @@ const [profileOpen, setProfileOpen] = useState(false); // Profile Dropdown
 
           {/* CTA Buttons */}
           <div className="flex items-center gap-4 ">
+          <Link to='/skill-form'>
             <a
               href="/"
               className="flex items-center h-12 m-1 text-white transition-colors bg-green-500 rounded-full hover:bg-green-600 px-9 ring-offset-2 ring-1 ring-green-400"
             >
-              Start Preparing
+              Analyze Skill Gap
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -368,7 +379,7 @@ const [profileOpen, setProfileOpen] = useState(false); // Profile Dropdown
                 <path d="M5 12h14"></path>
                 <path d="m12 5 7 7-7 7"></path>
               </svg>
-            </a>
+            </a></Link>
             <button className="flex items-center h-12 gap-2 transition border rounded-full border-slate-400 hover:bg-green-50 px-7 text-slate-700">
               <svg
                 xmlns="http://www.w3.org/2000/svg"

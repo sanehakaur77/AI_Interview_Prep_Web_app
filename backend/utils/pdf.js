@@ -3,14 +3,23 @@ const pdfParse = require("pdf-parse");
 
 const extractTextFromPDF = async (filePath) => {
   try {
+    // safety check
+    if (!filePath || !fs.existsSync(filePath)) {
+      return "";
+    }
+
     const dataBuffer = fs.readFileSync(filePath);
 
-    const data = await pdfParse(dataBuffer);
-
-    return data.text; // only return text (simple)
+    try {
+      const data = await pdfParse(dataBuffer);
+      return data.text || "";
+    } catch (pdfError) {
+      console.log("PDF PARSE ERROR:", pdfError.message);
+      return ""; // IMPORTANT: prevent crash
+    }
   } catch (error) {
-    console.error("PDF error:", error);
-    throw new Error("Failed to extract PDF text");
+    console.log("FILE READ ERROR:", error.message);
+    return "";
   }
 };
 

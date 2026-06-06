@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import { toast, Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import Navbar from "../Components/Navbar";
 
 const FeatureItem = ({ icon, text }) => (
   <div className="flex items-center gap-3 bg-white/80 backdrop-blur-sm p-3 rounded-xl border border-white/50 shadow-sm transition-transform hover:scale-[1.02]">
@@ -21,7 +22,7 @@ const FeatureItem = ({ icon, text }) => (
 );
 
 export default function StartInterviewForm() {
-  // ✅ STATE
+ 
   const [jobRole, setJobRole] = useState("");
   const [experience, setExperience] = useState("");
   const [interviewType, setInterviewType] = useState("Technical");
@@ -29,8 +30,7 @@ export default function StartInterviewForm() {
   const [loading, setLoading] = useState(false);
   // navigatio
   const navigate = useNavigate();
-
-  // ✅ SUBMIT HANDLER
+ 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -49,7 +49,7 @@ export default function StartInterviewForm() {
       formData.append("resume", resume);
       const token = localStorage.getItem("token");
       const res = await axios.post(
-        "https://ai-interview-prep-web-app.onrender.com/session/start",
+        "http://localhost:8989/session/start",
         formData,
         {
           headers: {
@@ -88,6 +88,8 @@ export default function StartInterviewForm() {
   };
 
   return (
+   <>
+   <Navbar/>
     <div className="min-h-screen bg-[#f1f5f9] flex items-center justify-center p-4">
       <div className="flex flex-col w-full max-w-2xl overflow-hidden bg-white border border-gray-200 shadow-xl md:flex-row rounded-2xl">
         {/* LEFT SIDE */}
@@ -199,5 +201,6 @@ export default function StartInterviewForm() {
         </div>
       </div>
     </div>
+   </>
   );
 }

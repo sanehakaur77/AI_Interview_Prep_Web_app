@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const { signup, login, getProfile } = require("../controllers/authcontroller");
+const { signup, login, getProfile,googleLogin } = require("../controllers/authcontroller");
 
 const {
   signupValidation,
@@ -13,6 +13,9 @@ const { authMiddleware } = require("../middlewares/auth.middleware");
 
 router.post("/signup", validate(signupValidation), signup);
 router.post("/login", validate(loginValidation), login);
+
+
+router.post("/google", googleLogin);
 
 router.get("/profile", getProfile);
 

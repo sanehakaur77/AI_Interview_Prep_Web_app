@@ -98,12 +98,66 @@ exports.getProfile = async (req, res) => {
       return res.status(404).json({ message: "User not found" });
     }
 
-    res.status(200).json({
-      success: true,
-      username: user.name,
-      email: user.email,
-    });
+   res.status(200).json({
+  success: true,
+  username: user.name,
+  email: user.email,
+  userId: user._id,
+});
   } catch (error) {
     res.status(401).json({ message: "Invalid token" });
+  }
+};
+
+
+exports.googleLogin = async (req, res) => {
+  try {
+    const { name, email, googleId, avatar } = req.body;
+
+    if (!email || !googleId) {
+      return res.status(400).json({
+        success: false,
+        message: "Missing Google data",
+      });
+    }
+
+    // 🔍 check if user exists
+    let user = await User.findOne({ email });
+
+    if (!user) {
+      // 🆕 create new user
+      user = await User.create({
+        name,
+        email,
+        googleId,
+        avatar,
+        password: null,
+      });
+    } else {
+      // 🔄 update googleId if not present
+      if (!user.googleId) {
+        user.googleId = googleId;
+        user.avatar = avatar;
+        await user.save();
+      }
+    }
+
+    // 🔐 JWT token
+    const token = jwt.sign(
+      { id: user._id },
+      process.env.JWT_SECRET,
+      { expiresIn: "7d" }
+    );
+
+    res.json({
+      success: true,
+      token,
+      user,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
   }
 };

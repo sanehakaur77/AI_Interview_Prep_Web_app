@@ -19,46 +19,49 @@ You are an expert interviewer.
 Create a ${interviewType || "general"} interview for a ${jobRole} with ${experience} experience.
 
 Use the resume below:
-${resumeText}
+${resumeText || "No resume provided"}
 
 Rules:
-- Ask exactly 3 questions
-- 1 skill-based questions- programming concepts mentioned in resume
-- 2 project-based questions (from resume) 
-- Do NOT give answers
-- Keep questions short
-- Return ONLY JSON array
+- Ask exactly 15 questions
+- 10 skill-based questions
+- 5 project-based questions
+- Return ONLY valid JSON array
 
 Format:
 [
-  { "question": "..." },
   { "question": "..." }
 ]
 `;
 
     const result = await model.generateContent(prompt);
-    const response = result.response.text();
+    let response = result.response.text();
 
-    const cleanText = response
+    // remove markdown safely
+    response = response
       .replace(/```json/g, "")
       .replace(/```/g, "")
       .trim();
 
-    let questions;
+    const start = response.indexOf("[");
+    const end = response.lastIndexOf("]");
 
-    try {
-      questions = JSON.parse(cleanText);
-    } catch (err) {
-      console.log("JSON parse failed, fallback used");
-
-      // fallback: return raw text as array
-      questions = [{ question: cleanText }];
+    if (start === -1 || end === -1) {
+      throw new Error("Invalid JSON from Gemini");
     }
 
-    return questions;
+    const jsonString = response.slice(start, end + 1);
+
+    try {
+      return JSON.parse(jsonString);
+    } catch (err) {
+      console.log("JSON parse failed fallback");
+
+      return [{ question: "Tell me about your project experience." }];
+    }
   } catch (error) {
     console.error("Gemini Error:", error);
-    throw new Error("AI question generation failed");
+
+    return [{ question: "Tell me about yourself." }];
   }
 };
 // evaluate
@@ -70,56 +73,50 @@ const evaluateInterview = async (questions) => {
   const formattedQA = questions
     .map(
       (q, i) =>
-        `ID:${i}
-Question: ${q.question}
-Answer: ${q.answer || "No answer"}`,
+        `Q${i + 1}: ${q.question}\nAnswer: ${q.answer || "No answer"}`
     )
     .join("\n\n");
 
   const prompt = `
-You are an expert technical interviewer.
+You are an expert interviewer.
 
-Return ONLY valid JSON.
+Return ONLY valid JSON. No markdown.
 
 STRICT FORMAT:
 {
-  "results": [
+  "score": number,
+  "summary": "string",
+  "feedback": [
     {
-      "id": 0,
-      "score": 0,
-      "feedback": "string feedback"
+      "questionId": number,
+      "feedback": "string",
+      "score": number
     }
-  ],
-  "summary": "overall summary"
+  ]
 }
 
-RULES:
-- score must be 0-10
-- feedback must be 1-2 lines only
-- MUST return same number of results as input
-- NO markdown, NO extra text
+Rules:
+- score 0–10
+- feedback max 2 lines
+- MUST match number of questions
 
 Interview:
 ${formattedQA}
 `;
 
-  const result = await model.generateContent(prompt);
-
-  const text = result.response.text().trim();
-
-  const start = text.indexOf("{");
-  const end = text.lastIndexOf("}");
-
-  if (start === -1 || end === -1) {
-    return fallback(questions);
-  }
-
-  const clean = text.slice(start, end + 1);
-
   try {
-    return JSON.parse(clean);
+    const result = await model.generateContent(prompt);
+    const text = result.response.text().replace(/```json|```/g, "").trim();
+
+    const jsonMatch = text.match(/\{[\s\S]*\}/);
+
+    if (!jsonMatch) return fallback(questions);
+
+    const parsed = JSON.parse(jsonMatch[0]);
+
+    return parsed;
   } catch (err) {
-    console.log("RAW GEMINI OUTPUT:", text);
+    console.log("EVALUATION ERROR:", err.message);
     return fallback(questions);
   }
 };

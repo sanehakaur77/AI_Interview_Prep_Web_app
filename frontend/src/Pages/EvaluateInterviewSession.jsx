@@ -18,7 +18,7 @@ export default function EvaluateInterviewSession() {
   const { sessionId } = useParams();
   const hasCelebrated = useRef(false);
 
-  const url = `https://ai-interview-prep-web-app.onrender.com/session/result/${sessionId}`;
+  const url = `http://localhost:8989/session/result/${sessionId}`;
 
   useEffect(() => {
     let interval;

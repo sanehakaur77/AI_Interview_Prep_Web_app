@@ -26,37 +26,47 @@ const WorkingSteps = () => {
   ];
 
   return (
-    <section className="h-screen bg-white flex items-center">
-      <div className="max-w-6xl mx-auto px-6 w-full">
+    <section className="flex items-center min-h-screen py-16 bg-gray-50">
+      <div className="w-full px-6 mx-auto max-w-7xl">
         {/* Heading */}
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-gray-800">How It Works</h2>
-          <p className="text-gray-500 mt-2">
+        <div className="mb-16 text-center">
+          <h2 className="text-3xl font-bold tracking-tight text-gray-900 md:text-4xl">
+            How It Works
+          </h2>
+          <p className="max-w-md mx-auto mt-3 text-lg text-gray-600">
             Follow these simple steps to start your preparation
           </p>
         </div>
 
         {/* Steps Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {steps.map((step, index) => (
             <div
               key={index}
-              className="bg-white/70 backdrop-blur-md border border-gray-200 rounded-xl p-6 shadow-sm hover:shadow-md transition duration-300"
+              className="relative flex flex-col justify-between p-6 transition-all duration-300 bg-white border border-gray-200 shadow-sm rounded-2xl hover:shadow-xl hover:-translate-y-1"
             >
-              {/* Icon */}
-              <div className="mb-4">{step.icon}</div>
+              <div>
+                {/* Icon Wrapper */}
+                <div className="inline-flex items-center justify-center p-3 mb-5 bg-emerald-50 rounded-xl">
+                  {step.icon}
+                </div>
 
-              {/* Title */}
-              <h3 className="text-lg font-semibold text-gray-800 mb-2">
-                {step.title}
-              </h3>
+                {/* Title */}
+                <h3 className="mb-2 text-xl font-semibold text-gray-800">
+                  {step.title}
+                </h3>
 
-              {/* Description */}
-              <p className="text-sm text-gray-600">{step.description}</p>
+                {/* Description */}
+                <p className="text-sm leading-relaxed text-gray-600">
+                  {step.description}
+                </p>
+              </div>
 
-              {/* Step Number */}
-              <div className="mt-4 text-sm font-bold text-emerald-600">
-                Step {index + 1}
+              {/* Step Number Badge */}
+              <div className="flex items-center justify-between pt-4 mt-6 border-t border-gray-100">
+                <span className="text-xs font-bold uppercase tracking-wider text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-full">
+                  Step {index + 1}
+                </span>
               </div>
             </div>
           ))}
