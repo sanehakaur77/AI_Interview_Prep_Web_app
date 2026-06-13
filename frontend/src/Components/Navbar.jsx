@@ -5,7 +5,7 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="relative w-full bg-white border-b border-emerald-100">
+    <nav className="relative w-full bg-white border-b position-fixed border-emerald-100">
       {/* DESKTOP & BASE LAYOUT */}
       <div className="flex items-center justify-between px-6 py-4 mx-auto max-w-7xl">
         
