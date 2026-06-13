@@ -293,8 +293,6 @@ Storage       → Cloudinary
 ## 🚀 Installation & Setup
 
 
----
-
 ### 📌 Step 1: Clone the Repository
 
 ```bash
@@ -309,6 +307,27 @@ cd backend
 npm install express jsonwebtoken bcrypt mongoose cors multer cloudinary dotenv
 npm install @google/generative-ai
 npm install nodemon
+```
+### 📌 Frontend Setup
+
+---
+
+```bash
+# 1. Create Vite project
+npm create vite@latest frontend
+
+# 2. Go to project folder
+cd frontend
+
+# 3. Install dependencies
+npm install
+
+# 4. Install Tailwind CSS (correct package)
+npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init -p
+
+# 5. Install React Hot Toast (correct package)
+npm install react-hot-toast
 ```
 # Create environment file
 cp .env.example .env
