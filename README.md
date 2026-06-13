@@ -33,8 +33,6 @@ _Prepare. Practice. Perform._
 - 🚀 [Installation](#-installation--setup)
 - ⚙️ [Environment Setup](#-environment-setup)
 - 📁 [Project Structure](#-project-structure)
-- 🎤 [Mock Interviews](#-mock-interviews)
-- 💻 [Coding Practice](#-coding-practice)
 - 📊 [Progress Tracking](#-progress-tracking)
 - 👨‍💼 [Admin Dashboard](#-admin-dashboard)
 - 📄 [Purpose](#purpose)
@@ -473,33 +471,77 @@ frontend/
 
 ---
 
-## 🎤 Mock Interviews
-
----
-
-## 💻 Coding Practice
-
----
-
-## 📊 Progress Tracking
-
----
-
-## 👨‍💼 Admin Dashboard
-
----
-
 ## 📄 Purpose
+The AI Interview Preparation Platform is designed to help students and job seekers improve their interview skills through AI-powered mock interviews, quizzes, and skill assessment tools.
+
+The platform enables users to:
+
+- Practice AI-generated interview questions.
+- Participate in voice-based mock interviews.
+- Generate and attempt technical quizzes.
+- Analyze skill gaps and receive improvement suggestions.
+- Track interview performance and progress.
+- Prepare for real-world job interviews in a structured manner.
+
+The main objective of this project is to provide an interactive and personalized interview preparation experience that helps users build confidence and enhance their technical and communication skills.
 
 ---
 
 ## 🤝 Contributing
 
+## 🚀 Tech Stack
+
+### Frontend
+
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=000)
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=fff)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=fff)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=for-the-badge&logo=tailwind-css&logoColor=fff)
+![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=fff)
+
+### Backend
+
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=fff)
+![Express.js](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=fff)
+
+### Database
+
+![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=fff)
+![Mongoose](https://img.shields.io/badge/Mongoose-880000?style=for-the-badge&logo=mongoose&logoColor=fff)
+
+### Authentication & Security
+
+![Firebase](https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=000)
+![JWT](https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=jsonwebtokens&logoColor=fff)
+
+### AI & Voice Features
+
+![Google Gemini](https://img.shields.io/badge/Google_Gemini-4285F4?style=for-the-badge&logo=google&logoColor=fff)
+![Web Speech API](https://img.shields.io/badge/Web_Speech_API-FF6B6B?style=for-the-badge)
+![Speech Synthesis](https://img.shields.io/badge/Speech_Synthesis-6C63FF?style=for-the-badge)
+
+### Tools & Deployment
+
+![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=fff)
+![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=fff)
+![VS Code](https://img.shields.io/badge/VS_Code-007ACC?style=for-the-badge&logo=visualstudiocode&logoColor=fff)
+![Postman](https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=fff)
+![Netlify](https://img.shields.io/badge/Netlify-00C7B7?style=for-the-badge&logo=netlify&logoColor=fff)
+![Render](https://img.shields.io/badge/Render-46E3B7?style=for-the-badge&logo=render&logoColor=000)
 ---
 
 ## 🙏 Acknowledgments
 
----
+<div align="center">
 
+### ❤️ Made with Love by Saneha ❤️
 
+🚀 AI Interview Preparation Platform  
+💻 Built using MERN Stack, Gemini AI & Firebase
 
+⭐ Star the repository if you found it useful!
+
+🔗 Repository: https://github.com/sanehakaur77/AI_Interview_Prep_Web_app
+
+</div>
