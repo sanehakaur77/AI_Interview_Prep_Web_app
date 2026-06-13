@@ -277,7 +277,7 @@ Storage       → Cloudinary
 
 | 🔑 Login Page | 📝 Sign Up Page |
 |--------------|----------------|
-| ![](./screenshots/login.png) | ![](./screenshots/signup.png) |
+| ![](./Project_1/login.png) | ![](./Project_1/signup.png) |
 | Secure login system with authentication and user verification. | Create a new account and start your interview preparation journey. |
 
 ---
