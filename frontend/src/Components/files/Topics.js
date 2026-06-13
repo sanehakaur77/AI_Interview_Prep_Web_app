@@ -1,0 +1,102 @@
+export const topics = [
+  "Java",
+  "JavaScript",
+  "TypeScript",
+  "Python",
+  "C",
+  "C++",
+  "C#",
+  "Go",
+  "Rust",
+
+  "HTML",
+  "CSS",
+  "Tailwind CSS",
+  "Bootstrap",
+
+  "React",
+  "Next.js",
+  "Redux",
+  "Angular",
+  "Vue.js",
+
+  "Node.js",
+  "Express.js",
+  "Spring Boot",
+  "Django",
+  "Flask",
+
+  "MongoDB",
+  "MySQL",
+  "PostgreSQL",
+  "SQL",
+  "Oracle Database",
+
+  "Data Structures",
+  "Algorithms",
+  "Object Oriented Programming",
+  "Operating Systems",
+  "Computer Networks",
+  "DBMS",
+  "System Design",
+
+  "Git",
+  "GitHub",
+  "REST API",
+  "GraphQL",
+  "Microservices",
+
+  "AWS",
+  "Azure",
+  "Google Cloud",
+  "Docker",
+  "Kubernetes",
+  "DevOps",
+
+  "Machine Learning",
+  "Deep Learning",
+  "Artificial Intelligence",
+  "Generative AI",
+  "Prompt Engineering",
+  "Natural Language Processing",
+
+  "Data Science",
+  "Data Analytics",
+  "Power BI",
+  "Tableau",
+  "Excel",
+
+  "Cyber Security",
+  "Ethical Hacking",
+  "Cloud Security",
+
+  "Testing",
+  "Selenium",
+  "JUnit",
+  "Automation Testing",
+
+  "Blockchain",
+  "Web3",
+  "IoT",
+  "Embedded Systems",
+
+  "HR Interview",
+  "Behavioral Interview",
+  "Aptitude",
+  "Logical Reasoning",
+  "Quantitative Aptitude",
+
+  "Communication Skills",
+  "Leadership",
+  "Problem Solving",
+  "Teamwork",
+
+  "Frontend Development",
+  "Backend Development",
+  "Full Stack Development",
+
+  "Software Engineering",
+  "Software Testing",
+  "Product Management",
+  "Business Analysis"
+];

@@ -39,8 +39,10 @@ useEffect(() => {
           },
         }
       );
+    
       if(res.data.exists){
         setProfile(true);
+        localStorage.setItem("Profile",true);
       }
     } catch (err) {
       console.log(err);

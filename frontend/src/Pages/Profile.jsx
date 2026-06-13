@@ -43,7 +43,7 @@ const useFetchProfile = (userId) => {
 
   useEffect(() => {
     fetchProfile();
-  }, [fetchProfile]);
+  }, []);
 
   return { profile, loading, error, refetch: fetchProfile };
 };

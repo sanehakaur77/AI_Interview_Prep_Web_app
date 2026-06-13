@@ -17,9 +17,10 @@ const Dashboard = () => {
 
   useEffect(() => {
     const fetchData = async () => {
+      const userId=localStorage.getItem("userId");
       try {
         const res = await axios.get(
-          "http://localhost:8989/dashboard/get/6a22403e54524f154f4f99b4"
+          `http://localhost:8989/dashboard/get/${userId}`
         );
         setData(res.data);
       } catch (err) {
@@ -225,7 +226,7 @@ const Dashboard = () => {
 
                     <div className="flex items-center gap-1.5">
                       <div className="px-3 py-1 font-mono text-xs font-bold border rounded-full text-slate-700 bg-slate-100 border-slate-200">
-                        Score: {a.score ?? "N/A"}
+                        Score: {a.overallScore  ?? "N/A"}/100
                       </div>
                       <ChevronRight className="w-4 h-4 text-slate-300 group-hover:text-slate-400 group-hover:translate-x-0.5 transition-all" />
                     </div>

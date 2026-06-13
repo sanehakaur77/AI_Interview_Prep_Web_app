@@ -1,0 +1,334 @@
+# 🎯 InterviewPrep AI
+
+### Your Complete Interview Preparation Platform
+
+_Prepare. Practice. Perform._
+
+---
+
+📅 **Track your interview preparation journey**
+
+---
+
+## 🛠️ Tech-Stack
+
+![React](https://img.shields.io/badge/React-19.1.1-61DAFB?style=for-the-badge&logo=react&logoColor=black)
+![Node.js](https://img.shields.io/badge/Node.js-18+-339933?style=for-the-badge&logo=node.js&logoColor=white)
+![MongoDB](https://img.shields.io/badge/MongoDB-8.0-47A248?style=for-the-badge&logo=mongodb&logoColor=white)
+![Express](https://img.shields.io/badge/Express-4.18-000000?style=for-the-badge&logo=express&logoColor=white)
+![JWT](https://img.shields.io/badge/JWT-Authentication-orange?style=for-the-badge)
+![Gemini_AI](https://img.shields.io/badge/Gemini-AI-blue?style=for-the-badge)
+![Vite](https://img.shields.io/badge/Vite-7.1-646CFF?style=for-the-badge&logo=vite&logoColor=white)
+
+---
+
+[Features](#features) • [Demo](#demo) • [Installation](#installation) • [Documentation](#documentation) • [Contributing](#contributing)
+
+## 🌟 Table of Contents
+
+- 🌟 [Overview](#-overview)
+- ✨ [Key Features](#-key-features)
+- 🛠️ [Tech Stack](#-tech-stack)
+- 🖼️ [Screenshots](#-screenshots)
+- 🚀 [Installation](#-installation--setup)
+- ⚙️ [Environment Setup](#-environment-setup)
+- 📁 [Project Structure](#-project-structure)
+- 🎤 [Mock Interviews](#-mock-interviews)
+- 💻 [Coding Practice](#-coding-practice)
+- 📊 [Progress Tracking](#-progress-tracking)
+- 👨‍💼 [Admin Dashboard](#-admin-dashboard)
+- 📄 [Purpose](#purpose)
+- 🤝 [Contributing](#-contributing)
+- 🙏 [Acknowledgments](#-acknowledgements)
+
+## 🌟 Overview
+
+InterviewPrep AI is a comprehensive interview preparation platform designed to help students and job seekers prepare for technical and HR interviews with confidence. The platform provides AI-powered mock interviews, coding practice, aptitude tests, company-specific interview questions, resume analysis, and progress tracking in a single place.
+
+Whether you are preparing for campus placements, internships, or professional job interviews, InterviewPrep AI offers a structured learning experience to improve your technical knowledge, communication skills, and interview performance.
+
+### 🎯 What We Offer
+
+- 🎯 Skill-Based Evaluation
+- 📄 Resume-Based Interview Generation
+- 🤖 AI-Powered Mock Interviews
+- 📊 AI Evaluation & Performance Analysis
+- 🧠 Smart Skill Gap Analyzer
+- 👤 Personalized User Dashboard
+- 📝 Profile Management
+- 🎙️ Speech-to-Text Integration
+- 🔊 Text-to-Speech Support
+- 📈 Progress Tracking & Analytics
+- 💡 Personalized Improvement Suggestions
+- 🏆 Interview Readiness Score
+
+---
+
+## ✨ Key Features
+## ✨ Key Features
+
+### 🎤 AI-Powered Mock Interviews
+- Generate dynamic interview questions using AI
+- Technical and HR interview simulations
+- Real-time interview experience
+- Personalized feedback after each session
+
+### 📄 Resume-Based Interview Generation
+- Upload your resume to generate customized interview questions
+- Questions tailored to skills, projects, and experience
+- Industry-specific interview preparation
+
+### 📊 AI Evaluation & Feedback
+- Intelligent performance analysis
+- Detailed interview reports
+- Strength and weakness identification
+- Actionable improvement suggestions
+
+### 🧠 Smart Skill Gap Analyzer
+- Detect missing skills required for target roles
+- Compare current skills with industry requirements
+- Personalized learning recommendations
+
+### 🎙️ Speech-to-Text Integration
+- Convert spoken responses into text
+- Practice verbal communication skills
+- Improve interview confidence
+
+### 🔊 Text-to-Speech Support
+- AI reads interview questions aloud
+- Realistic interview environment
+- Improved accessibility and user experience
+
+### 👤 User Dashboard & Profile Management
+- Personalized dashboard
+- Profile customization
+- Interview history and performance records
+- Track completed assessments
+
+### 📈 Progress Tracking & Analytics
+- Monitor preparation journey
+- View performance trends and scores
+- Track skill development and interview readiness
+
+### 🏆 Interview Readiness Score
+- Comprehensive readiness assessment
+- Performance-based scoring system
+- Track growth and preparation level
+
+### 🔒 Secure Authentication
+- User registration and login
+- Protected routes and user data security
+- JWT-based authentication system
+
+### 📱 Responsive Design
+- Mobile-friendly interface
+- Seamless experience across devices
+- Modern and intuitive user interface
+---
+
+## 🛠️ Tech Stack
+## 🛠️ Tech Stack
+
+### Frontend
+
+<p>
+  <img src="https://skillicons.dev/icons?i=react,vite,js,html,css,tailwind" />
+</p>
+
+- **React.js** – Component-Based User Interface Development
+- **Vite** – Fast Build Tool and Development Server
+- **Tailwind CSS** – Responsive and Modern UI Design
+- **React Router** – Client-Side Routing
+- **Axios** – API Communication
+
+---
+
+### Backend
+
+<p>
+  <img src="https://skillicons.dev/icons?i=nodejs,express" />
+</p>
+
+- **Node.js** – Server-Side Runtime Environment
+- **Express.js** – REST API Development
+- **JWT** – Authentication & Authorization
+- **Bcrypt** – Password Encryption
+
+---
+
+### Database
+
+<p>
+  <img src="https://skillicons.dev/icons?i=mongodb" />
+</p>
+
+- **MongoDB Atlas** – Cloud Database
+- **Mongoose** – ODM for MongoDB
+
+---
+
+### Artificial Intelligence
+
+### 🤖 Artificial Intelligence
+
+<p>
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_xnMJS99ptk9z3NQrZdK9NpYVqRcmuT0NGpVfNbmt4rFDlPNbE-1wvik&s=4" width="40" />
+</p>
+
+#### Google Gemini AI
+
+- Resume-Based Interview Generation
+- Skill Gap Analysis
+- AI Interview Evaluation
+- Personalized Feedback System
+
+---
+
+### 🎙️ Voice Features
+
+<p>
+  <img src="https://novawebbusiness.com/wp-content/uploads/2023/06/text-to-speech.png" width="40" />
+</p>
+
+#### Web Speech API
+
+- Speech-to-Text Conversion
+- Text-to-Speech Integration
+- Voice-Based Interview Experience
+- Real-Time Communication Analysis
+
+
+- **Web Speech API**
+  - Speech-to-Text Conversion
+  - Text-to-Speech Integration
+
+---
+
+### Cloud & Services
+
+<p>
+  <img src="https://skillicons.dev/icons?i=cloudflare" />
+</p>
+
+- **Cloudinary** – Resume & Asset Storage
+- **Nodemailer** – Email Notifications & OTP Verification
+
+---
+
+### Development Tools
+
+<p>
+  <img src="https://skillicons.dev/icons?i=git,github,vscode,postman" />
+</p>
+
+- **Git & GitHub** – Version Control
+- **VS Code** – Development Environment
+- **Postman** – API Testing
+
+---
+
+### Architecture Overview
+
+```text
+Frontend      → React + Tailwind CSS
+Backend       → Node.js + Express.js
+Database      → MongoDB Atlas
+Authentication→ JWT + Bcrypt
+AI Engine     → Google Gemini AI
+Voice Features→ Speech-to-Text & Text-to-Speech
+Storage       → Cloudinary
+
+```
+---
+
+## 🖼️ Screenshots
+
+### 🚀 Main Application Pages
+
+| 🤖 AI Smart Interview | 🏠 Landing Page |
+|----------------------|----------------|
+| ![](./Project_1/ai-smart-Interview.png) | ![](./screenshots/landing-page.png) |
+| AI-powered interview platform with intelligent evaluation and personalized feedback. | Modern landing page introducing the platform and its key features. |
+
+---
+
+| 👤 Profile Page | 📝 Quiz Page |
+|---------------|-------------|
+| ![](./screenshots/profile.png) | ![](./screenshots/quiz.png) |
+| Manage personal information, interview history, and account settings. | Practice technical and aptitude quizzes to improve interview readiness. |
+
+---
+
+| 🧠 Skill Gap Analyzer | 📊 Dashboard |
+|----------------------|-------------|
+| ![](./screenshots/skill-gap.png) | ![](./screenshots/dashboard.png) |
+| Analyze strengths and weaknesses with AI-driven recommendations. | Track performance, interview scores, and learning progress. |
+
+---
+
+| 🎯 Generate Quiz | 📚 MCQ Practice |
+|-----------------|----------------|
+| ![](./screenshots/generate-quiz.png) | ![](./screenshots/mcqs.png) |
+| Generate personalized quizzes based on skills and target job roles. | Practice topic-wise MCQs for technical and aptitude preparation. |
+
+---
+
+### 🔐 Authentication Pages
+
+| 🔑 Login Page | 📝 Sign Up Page |
+|--------------|----------------|
+| ![](./screenshots/login.png) | ![](./screenshots/signup.png) |
+| Secure login system with authentication and user verification. | Create a new account and start your interview preparation journey. |
+
+---
+
+### 📈 Performance & Results
+
+| 📊 Results Page | 🎤 Interview Evaluation |
+|----------------|------------------------|
+| ![](./screenshots/result.png) | ![](./screenshots/evaluation.png) |
+| View quiz scores, interview performance, and detailed analytics. | AI-generated feedback, strengths, weaknesses, and improvement suggestions. |
+
+
+## 🚀 Installation & Setup
+
+---
+
+## ⚙️ Environment Setup
+
+---
+
+## 📁 Project Structure
+
+---
+
+## 🎤 Mock Interviews
+
+---
+
+## 💻 Coding Practice
+
+---
+
+## 📊 Progress Tracking
+
+---
+
+## 👨‍💼 Admin Dashboard
+
+---
+
+## 📄 Purpose
+
+---
+
+## 🤝 Contributing
+
+---
+
+## 🙏 Acknowledgments
+
+---
+
+
+

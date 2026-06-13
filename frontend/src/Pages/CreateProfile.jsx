@@ -3,6 +3,10 @@ import axios from "axios";
 import { User, Upload, FileText } from "lucide-react";
 import toast, { Toaster } from "react-hot-toast";
 
+// Importing both arrays from your files
+import { roles } from "../Components/files/Roles";
+import { degrees } from "../Components/files/Degree"; // Adjust this path if your file name is different
+
 // --- Extracted Presentational Components (Prevents Re-renders) ---
 const Section = ({ title, children }) => (
   <div className="p-6 space-y-4 bg-white border shadow-sm border-slate-200 rounded-xl">
@@ -73,18 +77,18 @@ const CreateProfile = () => {
 
       if (resume) formData.append("resume", resume);
 
-      const res=await axios.post("http://localhost:8989/profile/create", formData, {
+      const res = await axios.post("http://localhost:8989/profile/create", formData, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "multipart/form-data",
         },
       });
-       if(res.data.success){
+      if (res.data.success) {
         setTimeout(() => {
           toast.success("Profile has been created successfully!");
         }, 2000);
-       }
-     
+      }
+
     } catch (err) {
       alert(err.response?.data?.message || "An error occurred while creating your profile.");
     } finally {
@@ -94,6 +98,7 @@ const CreateProfile = () => {
 
   return (
     <div className="flex items-center justify-center min-h-screen px-4 py-12 bg-slate-50/50">
+      <Toaster />
       <div className="w-full max-w-4xl overflow-hidden bg-white border shadow-md border-slate-200/80 rounded-2xl">
         
         {/* HEADER */}
@@ -124,7 +129,28 @@ const CreateProfile = () => {
               <div className="sm:col-span-2">
                 <Input label="College / University" name="college" value={form.college} onChange={handleChange} disabled={loading} placeholder="Harvard University" />
               </div>
-              <Input label="Degree" name="degree" value={form.degree} onChange={handleChange} disabled={loading} placeholder="B.S. / M.S." />
+              
+              {/* Dynamic Degree Dropdown */}
+              <div className="flex flex-col gap-1.5">
+                <label className="text-xs font-semibold tracking-wide text-slate-600">
+                  Degree
+                </label>
+                <select
+                  name="degree"
+                  value={form.degree}
+                  onChange={handleChange}
+                  disabled={loading}
+                  className="w-full px-3 py-2 text-sm transition-all duration-200 border rounded-lg outline-none bg-slate-50/50 border-slate-200 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/10 disabled:opacity-60 disabled:cursor-not-allowed"
+                >
+                  <option value="" disabled hidden>Select degree...</option>
+                  {degrees.map((degree, index) => (
+                    <option key={index} value={degree}>
+                      {degree}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
               <Input label="Branch / Field of Study" name="branch" value={form.branch} onChange={handleChange} disabled={loading} placeholder="Computer Science" />
               <Input label="Graduation Year" name="graduationYear" value={form.graduationYear} onChange={handleChange} disabled={loading} placeholder="2026" />
               <Input label="CGPA / GPA" name="cgpa" value={form.cgpa} onChange={handleChange} disabled={loading} placeholder="3.8 or 9.0" />
@@ -133,7 +159,27 @@ const CreateProfile = () => {
 
           <Section title="Career Details">
             <div className="grid gap-4 sm:grid-cols-2">
-              <Input label="Target Role" name="targetRole" value={form.targetRole} onChange={handleChange} disabled={loading} placeholder="Frontend Engineer" />
+              
+              {/* Dynamic Target Role Dropdown */}
+              <div className="flex flex-col gap-1.5">
+                <label className="text-xs font-semibold tracking-wide text-slate-600">
+                  Target Role
+                </label>
+                <select
+                  name="targetRole"
+                  value={form.targetRole}
+                  onChange={handleChange}
+                  disabled={loading}
+                  className="w-full px-3 py-2 text-sm transition-all duration-200 border rounded-lg outline-none bg-slate-50/50 border-slate-200 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/10 disabled:opacity-60 disabled:cursor-not-allowed"
+                >
+                  <option value="" disabled hidden>Select target role...</option>
+                  {roles.map((role, index) => (
+                    <option key={index} value={role}>
+                      {role}
+                    </option>
+                  ))}
+                </select>
+              </div>
               
               <div className="flex flex-col gap-1.5">
                 <label className="text-xs font-semibold tracking-wide text-slate-600">
@@ -144,7 +190,7 @@ const CreateProfile = () => {
                   value={form.experienceLevel}
                   onChange={handleChange}
                   disabled={loading}
-                  className="w-full px-3 py-2 text-sm transition-all duration-200 border rounded-lg outline-none bg-slate-50/50 border-slate-200 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/10 disabled:opacity-60"
+                  className="w-full px-3 py-2 text-sm transition-all duration-200 border rounded-lg outline-none bg-slate-50/50 border-slate-200 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/10 disabled:opacity-60 disabled:cursor-not-allowed"
                 >
                   <option value="" disabled hidden>Select experience...</option>
                   <option value="Fresher">Fresher / Entry Level</option>
@@ -185,7 +231,7 @@ const CreateProfile = () => {
                   onChange={handleChange}
                   disabled={loading}
                   placeholder="Write a brief professional summary about yourself..."
-                  className="w-full px-3 py-2 text-sm transition-all duration-200 border rounded-lg outline-none resize-y bg-slate-50/50 border-slate-200 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/10 disabled:opacity-60"
+                  className="w-full px-3 py-2 text-sm transition-all duration-200 border rounded-lg outline-none resize-y bg-slate-50/50 border-slate-200 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/10 disabled:opacity-60 disabled:cursor-not-allowed"
                 />
               </div>
 

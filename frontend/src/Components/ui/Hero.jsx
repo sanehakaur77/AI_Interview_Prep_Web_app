@@ -8,6 +8,7 @@ const Hero = () => {
   const [username, setUsername] = useState("");
   const navigate=useNavigate();
   const userId=localStorage.getItem("userId");
+  const isProfile=localStorage.getItem("Profile");
 
   const token = Boolean(localStorage.getItem("token"));
   useEffect(() => {
@@ -216,11 +217,12 @@ const Hero = () => {
       <User size={20} />
       <span>Profile</span>
     </button>
+    {isProfile && 
      <button className="flex items-center w-full gap-2 px-3 py-2 text-gray-700 hover:bg-gray-100"
     onClick={()=>{navigate(`/dashboard/${userId}`)}}>
       <LayoutDashboard size={20} />
       <span>Dashboard</span>
-    </button>
+    </button>}
 
     {/* LOGOUT */}
     <button
