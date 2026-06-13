@@ -33,8 +33,6 @@ _Prepare. Practice. Perform._
 - 🚀 [Installation](#-installation--setup)
 - ⚙️ [Environment Setup](#-environment-setup)
 - 📁 [Project Structure](#-project-structure)
-- 📊 [Progress Tracking](#-progress-tracking)
-- 👨‍💼 [Admin Dashboard](#-admin-dashboard)
 - 📄 [Purpose](#purpose)
 - 🤝 [Contributing](#-contributing)
 - 🙏 [Acknowledgments](#-acknowledgements)
