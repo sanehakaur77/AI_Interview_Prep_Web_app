@@ -61,7 +61,6 @@ Whether you are preparing for campus placements, internships, or professional jo
 ---
 
 ## ✨ Key Features
-## ✨ Key Features
 
 ### 🎤 AI-Powered Mock Interviews
 - Generate dynamic interview questions using AI
@@ -122,7 +121,6 @@ Whether you are preparing for campus placements, internships, or professional jo
 - Modern and intuitive user interface
 ---
 
-## 🛠️ Tech Stack
 ## 🛠️ Tech Stack
 
 ### Frontend
@@ -304,7 +302,7 @@ npm install express jsonwebtoken bcrypt mongoose cors multer cloudinary dotenv
 npm install @google/generative-ai
 npm install nodemon
 ```
-### 📌 Frontend Setup
+### 📌 Step:3  Frontend Setup
 
 ---
 
