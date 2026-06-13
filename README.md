@@ -247,28 +247,28 @@ Storage       → Cloudinary
 
 | 🤖 AI Smart Interview | 🏠 Landing Page |
 |----------------------|----------------|
-| ![](./Project_1/ai-smart-Interview.png) | ![](./screenshots/landing-page.png) |
+| ![](./Project_1/ai-smart-Interview.png) | ![](./Project_1/Landing.png) |
 | AI-powered interview platform with intelligent evaluation and personalized feedback. | Modern landing page introducing the platform and its key features. |
 
 ---
 
 | 👤 Profile Page | 📝 Quiz Page |
 |---------------|-------------|
-| ![](./screenshots/profile.png) | ![](./screenshots/quiz.png) |
+| ![](./Project_1//Profile.png) | ![](./Project_1/quiz.png) |
 | Manage personal information, interview history, and account settings. | Practice technical and aptitude quizzes to improve interview readiness. |
 
 ---
 
 | 🧠 Skill Gap Analyzer | 📊 Dashboard |
 |----------------------|-------------|
-| ![](./screenshots/skill-gap.png) | ![](./screenshots/dashboard.png) |
+| ![](./Project_1/skill-gap.png) | ![](./Project_1/dashboard.png) |
 | Analyze strengths and weaknesses with AI-driven recommendations. | Track performance, interview scores, and learning progress. |
 
 ---
 
 | 🎯 Generate Quiz | 📚 MCQ Practice |
 |-----------------|----------------|
-| ![](./screenshots/generate-quiz.png) | ![](./screenshots/mcqs.png) |
+| ![](./Project_1//generate-quiz.png) | ![](./Project_1/mcqs.png) |
 | Generate personalized quizzes based on skills and target job roles. | Practice topic-wise MCQs for technical and aptitude preparation. |
 
 ---
@@ -286,7 +286,7 @@ Storage       → Cloudinary
 
 | 📊 Results Page | 🎤 Interview Evaluation |
 |----------------|------------------------|
-| ![](./screenshots/result.png) | ![](./screenshots/evaluation.png) |
+| ![](./Project_1/result.png) | ![](./screenshots/evaluation.png) |
 | View quiz scores, interview performance, and detailed analytics. | AI-generated feedback, strengths, weaknesses, and improvement suggestions. |
 
 
