@@ -410,9 +410,6 @@ backend/
 ├── package.json
  ```
 ### Frontend Structure
-# AI Interview Preparation Platform
-
-## Project Structure
 
 ```bash
 frontend/
