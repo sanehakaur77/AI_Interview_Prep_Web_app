@@ -292,8 +292,26 @@ Storage       → Cloudinary
 
 ## 🚀 Installation & Setup
 
+
 ---
 
+### 📌 Step 1: Clone the Repository
+
+```bash
+git clone https://github.com/your-username/your-repository-name.git
+cd your-repository-name
+```
+### 📌 Step 2: Backend SetUp
+```bash
+cd backend
+
+# Install dependencies
+npm install express jsonwebtoken bcrypt mongoose cors multer cloudinary dotenv
+npm install @google/generative-ai
+npm install nodemon
+```
+# Create environment file
+cp .env.example .env
 ## ⚙️ Environment Setup
 
 ---
