@@ -483,7 +483,7 @@ The main objective of this project is to provide an interactive and personalized
 
 ---
 
-## 🤝 Contributing
+
 
 
 ## 🤝 Contributing
