@@ -328,11 +328,24 @@ npx tailwindcss init -p
 
 # 5. Install React Hot Toast (correct package)
 npm install react-hot-toast
+npm install react-router-dom
 ```
 # Create environment file
 cp .env.example .env
 ## ⚙️ Environment Setup
+``` bash
+PORT=8989
 
+MONGO_URI=your_mongodb_connection_string
+
+GEMINI_API_KEY=your_gemini_api_key
+
+CLOUD_NAME=your_cloudinary_cloud_name
+API_KEY=your_cloudinary_api_key
+API_SECRET=your_cloudinary_api_secret
+
+JWT_SECRET=your_jwt_secret_key
+```
 ---
 
 ## 📁 Project Structure
