@@ -286,7 +286,7 @@ Storage       → Cloudinary
 
 | 📊 Results Page | 🎤 Interview Evaluation |
 |----------------|------------------------|
-| ![](./Project_1/result.png) | ![](./screenshots/evaluation.png) |
+| ![](./Project_1/result.png) | ![](./Project_1/interview-evaluation.png) |
 | View quiz scores, interview performance, and detailed analytics. | AI-generated feedback, strengths, weaknesses, and improvement suggestions. |
 
 
