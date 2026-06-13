@@ -489,48 +489,37 @@ The main objective of this project is to provide an interactive and personalized
 
 ## 🤝 Contributing
 
-## 🚀 Tech Stack
 
-### Frontend
+## 🤝 Contributing
 
-![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
-![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=000)
-![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=fff)
-![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=fff)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=for-the-badge&logo=tailwind-css&logoColor=fff)
-![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=fff)
+Contributions are welcome and greatly appreciated!
 
-### Backend
+If you'd like to contribute to this project, please follow these steps:
 
-![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=fff)
-![Express.js](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=fff)
+1. 🍴 Fork the repository.
+2. 🌿 Create a new branch:
+   ```bash
+   git checkout -b feature/your-feature-name
+   ```
+3. 💻 Make your changes and commit them:
+   ```bash
+   git commit -m "Add: your feature description"
+   ```
+4. 🚀 Push to your branch:
+   ```bash
+   git push origin feature/your-feature-name
+   ```
+5. 🔄 Open a Pull Request and describe your changes.
 
-### Database
+### Contribution Guidelines
 
-![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=fff)
-![Mongoose](https://img.shields.io/badge/Mongoose-880000?style=for-the-badge&logo=mongoose&logoColor=fff)
+- Follow the existing code style and project structure.
+- Write clear and meaningful commit messages.
+- Test your changes before submitting.
+- Update documentation when necessary.
+- Be respectful and collaborative in discussions.
 
-### Authentication & Security
-
-![Firebase](https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=000)
-![JWT](https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=jsonwebtokens&logoColor=fff)
-
-### AI & Voice Features
-
-![Google Gemini](https://img.shields.io/badge/Google_Gemini-4285F4?style=for-the-badge&logo=google&logoColor=fff)
-![Web Speech API](https://img.shields.io/badge/Web_Speech_API-FF6B6B?style=for-the-badge)
-![Speech Synthesis](https://img.shields.io/badge/Speech_Synthesis-6C63FF?style=for-the-badge)
-
-### Tools & Deployment
-
-![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=fff)
-![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=fff)
-![VS Code](https://img.shields.io/badge/VS_Code-007ACC?style=for-the-badge&logo=visualstudiocode&logoColor=fff)
-![Postman](https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=fff)
-![Netlify](https://img.shields.io/badge/Netlify-00C7B7?style=for-the-badge&logo=netlify&logoColor=fff)
-![Render](https://img.shields.io/badge/Render-46E3B7?style=for-the-badge&logo=render&logoColor=000)
----
-
+Thank you for helping improve the AI Interview Preparation Platform! 🎉
 ## 🙏 Acknowledgments
 
 <div align="center">
