@@ -349,6 +349,130 @@ JWT_SECRET=your_jwt_secret_key
 ---
 
 ## 📁 Project Structure
+ ### Backend Setup
+ ``` bash
+backend/
+│
+├── config/
+│   ├── cloudinary.js
+│   ├── db.js
+│
+├── controllers/
+│   ├── auth.controller.js
+│   ├── user.controller.js
+│   ├── contact.controller.js
+│   ├── dashboard.controller.js
+│   ├── profile.controller.js
+│   ├── skill.controller.js
+│   ├── pdf.controller.js
+│
+├── middlewares/
+│   ├── auth.middleware.js
+│   ├── upload.middleware.js
+│   ├── validate.middleware.js
+│
+├── models/
+│   ├── user.model.js
+│   ├── assignment.model.js
+│   ├── contact.model.js
+│   ├── interview.model.js
+│   ├── result.model.js
+│   ├── skillgap.model.js
+│
+├── routes/
+│   ├── auth.routes.js
+│   ├── user.routes.js
+│   ├── contact.routes.js
+│   ├── dashboard.routes.js
+│   ├── profile.routes.js
+│   ├── skill.routes.js
+│   ├── result.routes.js
+│
+├── services/
+│   ├── gemini.service.js
+│   ├── interview.service.js
+│   ├── assignment.service.js
+│
+├── uploads/
+│   ├── (files uploaded here)
+│
+├── utils/
+│   ├── jwt.js
+│   ├── cloudinaryUpload.js
+│   ├── apiResponse.js
+│
+├── validators/
+│   ├── auth.validator.js
+│   ├── user.validator.js
+│
+├── .env
+├── server.js / index.js
+├── package.json
+ ```
+### Frontend Structure
+# AI Interview Preparation Platform
+
+## Project Structure
+
+```bash
+frontend/
+│
+├── dist/
+├── node_modules/
+├── public/
+│
+├── src/
+│   │
+│   ├── assets/
+│   │
+│   ├── Components/
+│   │   │
+│   │   ├── common/
+│   │   │   └── Footer.jsx
+│   │   │
+│   │   ├── files/
+│   │   │   ├── Companies.js
+│   │   │   ├── Degree.js
+│   │   │   ├── Roles.js
+│   │   │   └── Topics.js
+│   │   │
+│   │   └── ui/
+│   │       ├── Navbar.jsx
+│   │       ├── Testimonial.jsx
+│   │
+│   ├── Pages/
+│   │   ├── AISmartInterview.jsx
+│   │   ├── CreateP.jsx
+│   │   ├── Dashboard.jsx
+│   │   ├── Evaluate.jsx
+│   │   ├── EvaluateInterviewSession.jsx
+│   │   ├── Feature.jsx
+│   │   ├── GetQuizPage.jsx
+│   │   ├── Home.jsx
+│   │   ├── Login.jsx
+│   │   ├── Profile.jsx
+│   │   ├── QuizPage.jsx
+│   │   ├── QuizResultPage.jsx
+│   │   ├── ResumeInterview.jsx
+│   │   ├── Signup.jsx
+│   │   ├── SkillGapForm.jsx
+│   │   ├── SkillGapResult.jsx
+│   │   ├── StartInterviewForm.jsx
+│   │   ├── UserProfileForm.jsx
+│   │   └── WorkingSteps.jsx
+│   │
+│   ├── App.css
+│   ├── App.jsx
+│   ├── firebase.js
+│   ├── index.css
+│   └── main.jsx
+│
+├── .gitignore
+├── eslint.config.js
+├── package.json
+├── package-lock.json
+└── README.md
+```
 
 ---
 
